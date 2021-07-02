@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type="text/css">
+        div {
+            position: relative; /* Относительное позиционирование */
+            margin-top: 20px;
+            margin-left: 670px;
+        }
+        .link-origin {
+            stroke-opacity: 1; 
+            stroke-width: 5px; 
+        }
+        .link-res {
+            stroke-opacity: 1; 
+            stroke-width: 2px; 
+        }
+        text {
+            display:block;
+            white-space: nowrap;
+        }
+        .btn-execute {
+            position: absolute; /* Относительное позиционирование */
+            top: 680px;
+            left: 790px;
+            width: 200px;
+            height: 30px;
+        }
+        .btn-clear {
+            position: absolute; /* Относительное позиционирование */
+            top: 680px;
+            left: 670px;
+            width: 100px;
+            height: 30px;
+        }
+        .info {
+            position: absolute; /* Относительное позиционирование */
+            top: 100px;
+            left: 670px;
+        }
+    </style>
+</head>
+<body>
+    <div> <a href="index.html">На главную </a> </div>
+    <svg >
+    </svg>
+    <script type="text/javascript" src="js/data.js"></script>
+    <script type="text/javascript" src="https://d3js.org/d3.v6.min.js"></script>
+    <script type="text/javascript" src="https://d3js.org/d3-selection-multi.v1.js"></script>
+    <script type="text/javascript" src ="js/dijkstra.js"> </script>
+    <script type="text/javascript" src ="js/graph.js"> </script>    
+</body>
+</html>
