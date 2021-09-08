@@ -4,14 +4,17 @@
   {{ super() }}
 {% endblock %}
 
+{% block header %}
+  <ul class="mainmenu">
+    <li><a href="/tree-dynamic">Дерево с анимацией</a></li>
+    <li><a href="/graph">Карта метро</a></li>
+    <li><a href="/tree-binary">Бинарное дерево</a></li>
+    <li><a href="/register">Регистрация</a></li>
+  </ul>
+{% endblock %}
+
 {% block content %}
-  <div class="container">
-    <div class="row">
-      <div class="col-1"><a href="/tree-dynamic">Tree Example</a></div>
-      <div class="col-2"><a href="/graph">Metro map</a></div>
-      <div class="col-3"><a href="/tree-binary">Binary tree</a></div>
-    </div>
-  </div>
+  <div class="container"></div>
   <script src="https://d3js.org/d3.v6.min.js"></script>
   <script src="/static/js/app.js"></script>
 {% endblock %}

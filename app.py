@@ -25,5 +25,10 @@ def dynamic_tree():
     return render_template("layouts/dynamic.html", title = "Бинарное дерево")
 
 
+@app.route('/register')
+def register():
+    return render_template("layouts/register.html", title = "Бинарное дерево")
+
+
 if __name__ == '__main__':
     app.run(debug = True)

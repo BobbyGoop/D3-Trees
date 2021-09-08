@@ -13,7 +13,7 @@ class Node {
 }
 var windowSizes = [240, 480, 960, 1920]
 
-var width = 600, possibleNodes, height=850
+var width = 1000, possibleNodes, height=1000
 var svg = d3.select("svg")
             .attr('height', height)
             .attr('width', width)
@@ -347,14 +347,14 @@ class BinarySearchTree {
             node.append('circle')
                 .attr('cx', el.x)
                 .attr('cy', el.y)
-                .attr('r', 5)
+                .attr('r', 10)
             node.append('text')
                 .attr('fill', 'black')
                 .attr('x', el.x)
                 .attr('y', el.y)
                 .attr('text-anchor', 'middle')
                 .attr('alignment-baseline', 'middle')
-                .attr('font-size', 4)
+                .attr('font-size', 8)
                 .text(el.value)
                 
               

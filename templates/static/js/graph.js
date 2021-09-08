@@ -24,7 +24,7 @@ function toRGB(h) {
 var route = []
 var width="1600", height="720"
 var link, node;
-var button = d3.select("body")
+var button = d3.select(".container")
             .append("button")
             .attr("class", "btn-execute")
             .text("Рассчитать маршрут")
@@ -34,15 +34,15 @@ var button = d3.select("body")
                 else {
                     showShortest(route);
                 }
-                console.log(route); 
+                console.log(route);
             });
 var infoField = d3.select("body")
                 .append("p")
                 .attr("class", "info")
 
-var button = d3.select("body")
-    .append("button")       
-    .attr("class", "btn-clear")   
+var button = d3.select(".container")
+    .append("button")
+    .attr("class", "btn-clear")
     .text("Очистить")
     .on("click", ()=> {
         svg.selectAll(".node-result").remove();
@@ -53,7 +53,8 @@ var button = d3.select("body")
         infoField.text("")
     })
 
-var svg = d3.select("svg")
+var svg = d3.select(".container")
+    .append("svg")
     .attr("width", width)
     .attr("height", height)
 

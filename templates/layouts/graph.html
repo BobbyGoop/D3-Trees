@@ -3,11 +3,6 @@
 {% block head %}
   {{ super() }}
     <style>
-        div {
-            position: relative; /* Относительное позиционирование */
-            margin-top: 20px;
-            margin-left: 670px;
-        }
         .link-origin {
             stroke-opacity: 1;
             stroke-width: 5px;
@@ -22,29 +17,34 @@
         }
         .btn-execute {
             position: absolute;
-            top: 680px;
-            left: 790px;
+            top: 720px;
+            left: 890px;
             width: 200px;
             height: 30px;
         }
         .btn-clear {
             position: absolute;
-            top: 680px;
-            left: 670px;
+            top: 720px;
+            left: 760px;
             width: 100px;
             height: 30px;
         }
         .info {
             position: absolute; /* Относительное позиционирование */
-            top: 100px;
-            left: 670px;
+            top: 150px;
+            left: 760px;
         }
     </style>
 {% endblock %}
 
+{% block header %}
+  <ul class="mainmenu">
+    <li><a href="/">На главную</a></li>
+  </ul>
+{% endblock %}
+
 {% block content %}
-    <div> <a href="/">На главную </a> </div>
-    <svg ></svg>
+    <div class="container"></div>
     <script type="text/javascript" src="https://d3js.org/d3.v6.min.js"></script>
     <script type="text/javascript" src="https://d3js.org/d3-selection-multi.v1.js"></script>
     <script type="text/javascript" src= "static/js/data.js"></script>
