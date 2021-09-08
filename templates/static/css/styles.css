@@ -17,10 +17,22 @@ a:hover {
 
 .clear {clear: both;}
 
-header {
+div.header {
+    position: absolute;
+    width: 100%;
     text-align: center;
     height: 60px;
-    background: #3F4137;
+    background: #27273c;
+    z-index: 3;
+}
+
+div.content {
+    position: absolute;
+    top: 60px;
+    width: 100%;
+    text-align: center;
+    z-index: 3;
+	margin: auto;
 }
 
 ul.mainmenu {
@@ -46,15 +58,11 @@ ul.mainmenu li a:hover {
 	color: #FDA83D;
 }
 
-div.content {
-	 margin: auto;
-	 text-align: center;
-}
-
 .form-contact {
     display: inline-block;
+    margin-top: 200px;
     width: 350px;
-    text-align: right;
+    text-align:right;
 }
 
 .form-contact label {
