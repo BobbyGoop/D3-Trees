@@ -1,11 +1,12 @@
 from datetime import datetime
-
-from flask import Flask, render_template, request, redirect, url_for
+from flask_restful import Resource, Api
+from flask import Flask, render_template, request, redirect, url_for, jsonify
 from db_setup import db_session, init_db
 from db_models import *
 import os
 
 app = Flask(__name__)
+api = Api(app)
 app._static_folder = os.path.abspath("templates/static/")
 
 
@@ -47,7 +48,8 @@ def register():
             print("Ошибка добавления в БД")
 
         return redirect(url_for('register'))
-
+    print(db_session.query(Client).all())
+    print(db_session.query(Order).all())
     return render_template("layouts/register.html", title = "Регистрация")
 
 
@@ -58,6 +60,7 @@ def shutdown_session(exception=None):
 
 if __name__ == '__main__':
     init_db()
+
     # client = Client("Client 1","Surname 1","123@mail.ru")
     # print(Client.id)
     # order = Order(datetime.now(), Client.id)
