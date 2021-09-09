@@ -14,8 +14,8 @@ class Client(Base):
         self.surname = surname
         self.email = email
 
-    def __repr__(self):
-        return f"{self.id}, {self.name}, {self.surname}, {self.email}"
+    def serialize(self):
+        return {"id": self.id, "name": self.name, "surname": self.surname, "email": self.email}
 
 
 class Order(Base):

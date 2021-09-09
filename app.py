@@ -1,4 +1,3 @@
-from datetime import datetime
 from flask_restful import Resource, Api
 from flask import Flask, render_template, request, redirect, url_for, jsonify
 from db_setup import db_session, init_db
@@ -8,6 +7,14 @@ import os
 app = Flask(__name__)
 api = Api(app)
 app._static_folder = os.path.abspath("templates/static/")
+
+
+class ClientList(Resource):
+    def get(self):
+        return jsonify({'clients': list(map(lambda cl: cl.serialize(), Client.query.all()))})
+
+
+api.add_resource(ClientList, '/clients')
 
 
 @app.route('/')
@@ -48,8 +55,8 @@ def register():
             print("Ошибка добавления в БД")
 
         return redirect(url_for('register'))
-    print(db_session.query(Client).all())
-    print(db_session.query(Order).all())
+    print(Client.query.all())
+    print(db_session.query(Order))
     return render_template("layouts/register.html", title = "Регистрация")
 
 
