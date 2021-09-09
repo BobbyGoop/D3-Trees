@@ -1,7 +1,9 @@
 {% extends "layouts/base.html" %}
 {% block title %} {{title}} {% endblock %}
 {% block head %}
-  {{ super() }}
+    {{ super() }}
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/card.css">
 {% endblock %}
 
 {% block header %}
@@ -11,18 +13,48 @@
 {% endblock %}
 
 {% block content %}
-{% for cat, msg in get_flashed_messages(True) %}
-<div class="flash {{cat}}">{{msg}}</div>
-{% endfor %}
-<form action="" method="post" class="form-contact">
-<p><label>Имя: </label> <input type="text" name="name" value="" required />
-<p><label>Возраст: </label> <input type="text" name="old" value="" required />
-<p><label>Город: </label> <input type="text" name="city" value="" required />
-<p><label>Email: </label> <input type="text" name="email" value="" required />
-<p><label>Пароль: </label> <input type="password" name="psw" value="" required />
-<p><label>Повтор пароля: </label> <input type="password" name="psw2" value="" required />
-<p><input type="submit" value="Регистрация" />
-</form>
+  <div class="container">
+        <div class="card">
+            <div class="info">
+                <div class="inputs">
+                  {% for cat, msg in get_flashed_messages(True) %}
+                  <div class="flash {{cat}}">{{msg}}</div>
+                  {% endfor %}
+                  <form action="" method="post" class="form-contact">
+                  <p><label>Имя: </label> <input type="text" name="name" value="" required />
+                  <p><label>Возраст: </label> <input type="text" name="old" value="" required />
+                  <p><label>Город: </label> <input type="text" name="city" value="" required />
+                  <p><label>Email: </label> <input type="text" name="email" value="" required />
+                  <p><label>Пароль: </label> <input type="password" name="psw" value="" required />
+                  <p><label>Повтор пароля: </label> <input type="password" name="psw2" value="" required />
+                </div>
+                <div class="register">
+                    <button>Purchase</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type = "text/javascript">
+      //Movement Animation to happen
+      const card = document.querySelector(".card");
+      const container = document.querySelector(".container");
+
+      //Moving Animation Event
+      container.addEventListener("mousemove", (e) => {
+        let xAxis = (window.innerWidth / 2 - e.pageX) / 15;
+        let yAxis = (window.innerHeight / 2 - e.pageY) / 15;
+        card.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
+      });
+      //Animate In
+      container.addEventListener("mouseenter", (e) => {
+        card.style.transition = "none";
+      });
+      //Animate Out
+      container.addEventListener("mouseleave", (e) => {
+        card.style.transition = "all 0.5s ease";
+        card.style.transform = `rotateY(0deg) rotateX(0deg)`;
+      });
+    </script>
 {% endblock %}
 
 {% block bg %}

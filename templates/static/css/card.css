@@ -1,0 +1,31 @@
+.container {
+  display: inline-block;
+  height: 30%;
+  padding-top: 5%;
+  
+}
+.card {
+  transform-style: preserve-3d;
+  min-height: 34vh;
+  width: 32rem;
+  border-radius: 30px;
+  box-shadow: 0 20px 20px rgba(0, 0, 0, 0.2), 0px 0px 50px rgba(0, 0, 0, 0.2);
+  background-color: white;
+  vertical-align: middle;
+}
+
+.purchase {
+  margin-top: 5rem;
+  transition: all 0.75s ease-out;
+}
+.register button {
+  width: 30%;
+  margin-top: 1rem;
+  padding: 1rem 0rem;
+  background: #f54642;
+  border: none;
+  color: white;
+  cursor: pointer;
+  border-radius: 30px;
+  font-weight: bolder;
+}
