@@ -1,7 +1,7 @@
-from db_setup import db_session
-from db_models import *
-from flask import jsonify, request, redirect, url_for
+from flask import jsonify, redirect, url_for
 from flask_restful import Resource, reqparse
+from db_models import *
+from db_setup import db_session
 
 parser = reqparse.RequestParser()
 parser.add_argument('client_id', type=int, help="Enter the client id")

@@ -1,8 +1,8 @@
+import os
+from flask import Flask, render_template
 from flask_restful import Api
-from flask import Flask, render_template, request, redirect, url_for
 from api import ClientWrapper, OrderWrapper
 from db_setup import db_session, init_db
-import os
 
 app = Flask(__name__)
 api = Api(app)
