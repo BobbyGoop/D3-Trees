@@ -1,4 +1,4 @@
-from flask import jsonify, redirect, url_for
+from flask import jsonify, redirect, url_for, request
 from flask_restful import Resource, reqparse
 from db_models import *
 from db_setup import db_session
@@ -42,6 +42,31 @@ class ClientWrapper(Resource):
             print("Ошибка добавления в БД")
         return redirect(url_for('register'))
 
+    def patch(self):
+        if request.content_type != 'application/json':
+            return {'message': 'Request content type should be application.json'}, 400
+        data = request.json
+        if not (set(data.keys()) <= set(Client.__table__.columns.keys())):
+            return {'message': 'Wrong attributes'}, 400
+        if 'id' not in data:
+            return {'message': 'Data has to contain client id'}, 400
+        if data['id'] is None:
+            return {'message': 'Client id could NOT be None'}, 400
+        client = db_session.query(Client).get(data['id'])
+        attributes = list(data.keys())
+        try:
+            for attr in attributes[1:]:
+                setattr(client, attr, data[attr])
+                db_session.flush()
+            db_session.commit()
+        except:
+            db_session.rollback()
+            return {'message': 'Wrong data passed'}, 400
+        print(set(data.keys()))
+
+    def delete(self):
+        pass
+
 
 class OrderWrapper(Resource):
     def __init__(self):
@@ -59,3 +84,12 @@ class OrderWrapper(Resource):
                 return None, 404
         elif self._cid and not self._oid:
             return list(map(lambda o: o.serialize(), filter(lambda o: o.client_id == self._cid, db_session.query(Order).all())))
+
+    def post(self):
+        pass
+
+    def patch(self):
+        pass
+
+    def delete(self):
+        pass
