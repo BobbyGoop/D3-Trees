@@ -6,8 +6,8 @@
 }
 .card {
   transform-style: preserve-3d;
-  min-height: 34vh;
-  width: 32rem;
+  min-height: 14rem;
+  width: 20rem;
   border-radius: 30px;
   box-shadow: 0 20px 20px rgba(0, 0, 0, 0.2), 0px 0px 50px rgba(0, 0, 0, 0.2);
   background-color: white;
@@ -19,7 +19,7 @@
   transition: all 0.75s ease-out;
 }
 .register button {
-  width: 40%;
+  width: 60%;
   margin-top: 1rem;
   padding: 1rem 0rem;
   background: #f54642;
