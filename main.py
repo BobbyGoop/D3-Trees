@@ -1,5 +1,5 @@
 import os
-from flask import Flask, render_template
+from flask import Flask, render_template, send_file
 from flask_restful import Api
 from api import ClientWrapper, OrderWrapper
 from db_setup import db_session, init_db
@@ -25,6 +25,12 @@ def binary_tree():
 @app.route('/graph')
 def graph():
     return render_template("layouts/graph.html", title="Бинарное дерево")
+
+
+@app.route('/resources/<resource_name>')
+def resources(resource_name):
+    if resource_name == 'data.json':
+        return send_file('./templates/static/js/data.json')
 
 
 @app.route('/tree-dynamic')

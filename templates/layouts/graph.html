@@ -1,53 +1,58 @@
 {% extends "layouts/base.html" %}
 {% block title %} {{title}} {% endblock %}
 {% block head %}
-  {{ super() }}
-    <style>
-        .link-origin {
-            stroke-opacity: 1;
-            stroke-width: 5px;
-        }
-        .link-res {
-            stroke-opacity: 1;
-            stroke-width: 2px;
-        }
-        text {
-            display:block;
-            white-space: nowrap;
-        }
-        .btn-execute {
-            position: absolute;
-            top: 720px;
-            left: 890px;
-            width: 200px;
-            height: 30px;
-        }
-        .btn-clear {
-            position: absolute;
-            top: 720px;
-            left: 760px;
-            width: 100px;
-            height: 30px;
-        }
-        .info {
-            position: absolute; /* Относительное позиционирование */
-            top: 150px;
-            left: 760px;
-        }
-    </style>
+{{ super() }}
+<style>
+    .link-origin {
+        stroke-opacity: 1;
+        stroke-width: 5px;
+    }
+
+    .link-res {
+        stroke-opacity: 1;
+        stroke-width: 2px;
+    }
+
+    text {
+        display: block;
+        white-space: nowrap;
+    }
+
+    .btn-execute {
+        position: absolute;
+        top: 720px;
+        left: 890px;
+        width: 200px;
+        height: 30px;
+    }
+
+    .btn-clear {
+        position: absolute;
+        top: 720px;
+        left: 760px;
+        width: 100px;
+        height: 30px;
+    }
+
+    .info {
+        position: absolute;
+        /* Относительное позиционирование */
+        top: 150px;
+        left: 760px;
+    }
+</style>
 {% endblock %}
 
 {% block header %}
-  <ul class="mainmenu">
+<ul class="mainmenu">
     <li><a href="/">На главную</a></li>
-  </ul>
+</ul>
 {% endblock %}
 
 {% block content %}
-    <div class="container"></div>
-    <script type="text/javascript" src="https://d3js.org/d3.v6.min.js"></script>
-    <script type="text/javascript" src="https://d3js.org/d3-selection-multi.v1.js"></script>
-    <script type="text/javascript" src= "static/js/data.js"></script>
-    <script type="text/javascript" src ="static/js/dijkstra.js"> </script>
-    <script type="text/javascript" src ="static/js/graph.js"> </script>
+<div class="container"></div>
+<script type="text/javascript" src="https://d3js.org/d3.v6.min.js"></script>
+<script type="text/javascript" src="https://d3js.org/d3-selection-multi.v1.js"></script>
+<script type="text/javascript" src="static/js/dijkstra.js"> </script>
+<script type="text/javascript" src="static/js/graph.js"> </script>
 {% endblock %}

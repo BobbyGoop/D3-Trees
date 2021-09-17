@@ -6,9 +6,9 @@ from db_setup import db_session
 parser = reqparse.RequestParser()
 parser.add_argument('client_id', type=int, help="Enter the client id")
 parser.add_argument('order_id', type=int, help="Enter the client id")
-parser.add_argument('client_name', type=int, help="Enter the client id")
-parser.add_argument('client_surname', type=int, help="Enter the client id")
-parser.add_argument('client_email', type=int, help="Enter the client id")
+parser.add_argument('client_name', type=str, help="Enter the client id")
+parser.add_argument('client_surname', type=str, help="Enter the client id")
+parser.add_argument('client_email', type=str, help="Enter the client id")
 
 
 class ClientWrapper(Resource):
@@ -17,6 +17,16 @@ class ClientWrapper(Resource):
         self._name = parser.parse_args().get('client_name')
         self._surname = parser.parse_args().get('client_surname')
         self._email = parser.parse_args().get('client_email')
+
+    @classmethod
+    def validate_data(cls, data):
+        if not (set(data.keys()) <= set(Client.__table__.columns.keys())):
+            return None
+        if 'id' not in data:
+            return None
+        if data['id'] is None:
+            return None
+        return data
 
     def get(self):
         if self._id:
@@ -40,28 +50,26 @@ class ClientWrapper(Resource):
         except:
             db_session.rollback()
             print("Ошибка добавления в БД")
+            return {'message': 'Wrong attributes'}, 400
         return redirect(url_for('register'))
 
     def patch(self):
         if request.content_type != 'application/json':
-            return {'message': 'Request content type should be application.json'}, 400
-        data = request.json
-        if not (set(data.keys()) <= set(Client.__table__.columns.keys())):
-            return {'message': 'Wrong attributes'}, 400
-        if 'id' not in data:
-            return {'message': 'Data has to contain client id'}, 400
-        if data['id'] is None:
-            return {'message': 'Client id could NOT be None'}, 400
-        client = db_session.query(Client).get(data['id'])
-        attributes = list(data.keys())
-        try:
-            for attr in attributes[1:]:
-                setattr(client, attr, data[attr])
-                db_session.flush()
-            db_session.commit()
-        except:
-            db_session.rollback()
-            return {'message': 'Wrong data passed'}, 400
+            return {'message': 'Request content type should be "application/json"'}, 400
+        data = self.validate_data(request.json)
+        if data:
+            client = db_session.query(Client).get(data['id'])
+            attributes = list(data.keys())
+            try:
+                for attr in attributes[1:]:
+                    setattr(client, attr, data[attr])
+                    db_session.flush()
+                db_session.commit()
+            except:
+                db_session.rollback()
+                return {'message': 'Check the data types'}, 400
+        else:
+            return {'message': 'Specified attributes do not exist or could not be changed'}, 400
         print(set(data.keys()))
 
     def delete(self):

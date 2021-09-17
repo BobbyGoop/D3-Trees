@@ -1,22 +1,22 @@
 class Node {
     constructor(value = null, left = null, right = null, x = null, y = null, level = null) {
-      this.value = value;
-      this.right = right;
-      this.left = left;
-      this.x = x;
-      this.y = y;
+        this.value = value;
+        this.right = right;
+        this.left = left;
+        this.x = x;
+        this.y = y;
     }
-  
+
     toString() {
-      return JSON.stringify(this);
+        return JSON.stringify(this);
     }
 }
 var windowSizes = [240, 480, 960, 1920]
 
-var width = 1000, possibleNodes, height=1000
+var width = 1000, possibleNodes, height = 1000
 var svg = d3.select("svg")
-            .attr('height', height)
-            .attr('width', width)
+    .attr('height', height)
+    .attr('width', width)
 var links = svg.append('g').attr('type', 'links')
 var circles = svg.append('g').attr('type', 'nodes')
 
@@ -32,7 +32,7 @@ class BinarySearchTree {
             if (node.left !== null) {
                 inOrder(node.left);
             }
-            
+
             // Коллбек
             process.call(this, node);
 
@@ -82,18 +82,18 @@ class BinarySearchTree {
         let result = []
         let queue = [this.root];
         while (queue.length > 0) {
-        
+
             let node = queue.shift();
-            
+
             result.push(node.value);
-            
+
             if (node.left) {
                 queue.push(node.left);
             }
 
             if (node.right) {
                 queue.push(node.right);
-            } 
+            }
         }
         return result;
     }
@@ -105,10 +105,10 @@ class BinarySearchTree {
         let fromLeft = true;
         let result = [];
 
-        while(stack.length) {
+        while (stack.length) {
             let len = stack.length;
-            
-            for (let i=0; i<len; i++) {
+
+            for (let i = 0; i < len; i++) {
                 let el = stack.pop();
                 result.push(el.value);
                 if (fromLeft) {
@@ -129,7 +129,7 @@ class BinarySearchTree {
     // Ищет ноду, возвращает ноду
     find(value) {
         var node = this.root;
-        var traverse = function(node) {
+        var traverse = function (node) {
             if (!node) return false;
             if (value === node.value) {
                 return true;
@@ -142,32 +142,32 @@ class BinarySearchTree {
         return traverse(node);
     }
 
-   
+
     // Минимальное значение
     getMin(node = this.root) {
-        while(node.left) {
-        node = node.left;
+        while (node.left) {
+            node = node.left;
         }
         return node;
     }
 
     // Максимальное значение
     getMax(node = this.root) {
-        while(node.right) {
-        node = node.right;
+        while (node.right) {
+            node = node.right;
         }
         return node.value;
     }
 
     remove(value, current = this.root) {
-        if(current === null) return current
+        if (current === null) return current
         if (value === current.value) {
             // Если у ноды 1 дочерняя нода или нет вовсе
-            if (current.left === null && current.right === null){
-                    return null
-            } else if(current.left === null){
-                return current.right 
-            } else if(current.right === null){
+            if (current.left === null && current.right === null) {
+                return null
+            } else if (current.left === null) {
+                return current.right
+            } else if (current.right === null) {
                 return current.left
             } else {
                 // Если у ноды 2 дочерних ноды, надо 
@@ -180,71 +180,71 @@ class BinarySearchTree {
                 current.right = this.remove(tempNode.value, current.right,)
                 return current
             }
-        // recur down the tree
-        } else if(value < current.value) {
-            current.left = this.remove(value, current.left, )
+            // recur down the tree
+        } else if (value < current.value) {
+            current.left = this.remove(value, current.left,)
             return current
-        } else{
-            
+        } else {
+
             current.right = this.remove(value, current.right,)
             return current
         }
     }
-   
+
     leastCommonAncestor(n1, n2) {
         if (this.root == null) {
-        return this.root;
+            return this.root;
         }
-        
+
         let queue = [this.root];
         while (queue.length) {
-        let root = queue.shift();
-        if (root.value === n1.value ||
-            root.value === n2.value ||
-            (root.value >= n1.value && root.value <= n2.value) ||
-            (root.value <= n1.value && root.value >= n2.value)
-            ){
-            return root;
-        } else {
-            if(root.value > n1.value && root.value > n2.value) {
-            root.left && queue.push(root.left);
+            let root = queue.shift();
+            if (root.value === n1.value ||
+                root.value === n2.value ||
+                (root.value >= n1.value && root.value <= n2.value) ||
+                (root.value <= n1.value && root.value >= n2.value)
+            ) {
+                return root;
             } else {
-            root.right && queue.push(root.right);
+                if (root.value > n1.value && root.value > n2.value) {
+                    root.left && queue.push(root.left);
+                } else {
+                    root.right && queue.push(root.right);
+                }
             }
-        }
         }
         return null;
     }
 
     findHeight(root = this.root) {
         let height = (node) => {
-        if (node === null) {
-            return -1;
-        }
+            if (node === null) {
+                return -1;
+            }
 
-        let lefth = height(node.left);
-        let righth = height(node.right);
-        
-        return 1 + Math.max(lefth, righth);
+            let lefth = height(node.left);
+            let righth = height(node.right);
+
+            return 1 + Math.max(lefth, righth);
         }
         return height(root);
     }
 
-    isBalanced(){
-        let balanced = function(node) {
-        if (node === null) { // Base case
-            return true;
-        }
-        let heightDifference = Math.abs(this.findHeight(node.left) - this.findHeight(node.right));
-        if (heightDifference > 1) {
-            return false;
-        } else {
-            return balanced(node.left) && balanced(node.right);
-        }
+    isBalanced() {
+        let balanced = function (node) {
+            if (node === null) { // Base case
+                return true;
+            }
+            let heightDifference = Math.abs(this.findHeight(node.left) - this.findHeight(node.right));
+            if (heightDifference > 1) {
+                return false;
+            } else {
+                return balanced(node.left) && balanced(node.right);
+            }
         }
         return balanced(this.root);
     }
-        
+
     contains(value) {
         console.log(this.find(value))
         if (this.find(value) == undefined) return false;
@@ -254,7 +254,7 @@ class BinarySearchTree {
     size() {
         let length = 0;
         this.printInOrder(() => {
-        length++;
+            length++;
         });
         return length;
     }
@@ -263,9 +263,9 @@ class BinarySearchTree {
     toArray() {
         let arr = [];
         this.printInOrder((node) => {
-        
-        arr.push(node);
-        //arr.push(node.value);
+
+            arr.push(node);
+            //arr.push(node.value);
         });
         return arr;
     }
@@ -274,7 +274,7 @@ class BinarySearchTree {
     toString() {
         let str = '';
         this.printInOrder((node) => {
-        str += JSON.stringify(node.value) + '\n';
+            str += JSON.stringify(node.value) + '\n';
         });
         return str;
     }
@@ -291,13 +291,13 @@ class BinarySearchTree {
         return arr[n];
     }
 
-    
+
     insert(value) {
-        var deltaX = width/4;
+        var deltaX = width / 4;
         var deltaY = 50;
         //var deltaY = deltaX;
         var coordY = 100;
-        var coordX = width/2;
+        var coordX = width / 2;
         var level = 0;
         if (this.root === null) {
             this.root = new Node(value, null, null, coordX, coordY);
@@ -309,7 +309,7 @@ class BinarySearchTree {
                 deltaX /= 2;
                 //deltaY = deltaX;
                 console.log(coordX)
-                level ++;
+                level++;
                 if (value > current.value) {
                     if (current.right === null) {
                         coordY += deltaY;
@@ -335,14 +335,14 @@ class BinarySearchTree {
                 }
             }
             console.log("Уровень: ", level,
-        "  X:", coordX, " Y:", coordY);
+                "  X:", coordX, " Y:", coordY);
         }
     }
 
     drawCircles() {
-        
+
         var nodes = this.toArray();
-        nodes.forEach((el)=> {
+        nodes.forEach((el) => {
             var node = circles.append('g');
             node.append('circle')
                 .attr('cx', el.x)
@@ -356,15 +356,15 @@ class BinarySearchTree {
                 .attr('alignment-baseline', 'middle')
                 .attr('font-size', 8)
                 .text(el.value)
-                
-              
+
+
         });
     }
 
     drawLinks() {
         var nodes = this.toArray();
-        nodes.forEach((node)=> {
-            
+        nodes.forEach((node) => {
+
             var sourceX, sourceY;
             var targetX, targetY;
             if (node.right != null) {
@@ -393,7 +393,7 @@ class BinarySearchTree {
                     .attr('y1', sourceY)
                     .attr('y2', targetY);
 
-            }       
+            }
         })
 
     }
@@ -402,15 +402,15 @@ class BinarySearchTree {
 function randomArray(count, min, max) {
     if (count > (max - min)) return;
     var arr = [], t;
-  
+
     while (count) {
-      t = Math.floor(Math.random() * (max - min) + min);
-      if (arr.indexOf(t) === -1) {
-        arr.push(t);
-        count--;
-      }
+        t = Math.floor(Math.random() * (max - min) + min);
+        if (arr.indexOf(t) === -1) {
+            arr.push(t);
+            count--;
+        }
     }
-  
+
     return arr;
 }
 
@@ -421,28 +421,28 @@ var array_2 = randomArray(15, 0, 50)
 var array_3 = [50, 30, 70, 20, 40, 60, 80]
 
 var ideal = [40, 50, 30, 20, 36, 16, 25, 34, 38, 60, 46, 64, 56, 48, 43,
-            14, 17, 23, 26,32, 35, 37, 39, 42, 44, 47, 49, 54, 58, 62, 66]
+    14, 17, 23, 26, 32, 35, 37, 39, 42, 44, 47, 49, 54, 58, 62, 66]
 
 var tree = new BinarySearchTree();
 array_2.forEach(el => tree.insert(el))
 
-console.log('Высота:' , tree.findHeight())
+console.log('Высота:', tree.findHeight())
 
 //tree.remove(60);
 tree.remove(30);
 tree.remove(20);
 
-tree.drawCircles();    
+tree.drawCircles();
 tree.drawLinks();
 
 console.log(tree.toArray());
-console.log("\n\nОбход дерева зиг-загом",tree.traverseZigZag()); // [6, 8, 2, 0, 4, 7, 9, 5, 3]
-console.log(" Обход дерева по уровням",tree.traverseBFS()); // [6, 2, 8, 0, 4, 7, 9, 3, 5]
+console.log("\n\nОбход дерева зиг-загом", tree.traverseZigZag()); // [6, 8, 2, 0, 4, 7, 9, 5, 3]
+console.log(" Обход дерева по уровням", tree.traverseBFS()); // [6, 2, 8, 0, 4, 7, 9, 3, 5]
 console.log(" Прямой обход: ", tree.printPreOrder((key) => console.log(key.value)));
 console.log(" Центрированный обход: ", tree.printInOrder((key) => console.log(key.value)));
 console.log(" Обратный обход: ", tree.printPostOrder((key) => console.log(key.value)));
 
-console.log("Высота дерева: ",tree.findHeight());
+console.log("Высота дерева: ", tree.findHeight());
 
 var n1 = 50;
 var n2 = 30;
@@ -450,4 +450,4 @@ var n3 = 20;
 console.log(`Дерево содержит значение ${n1}: `, tree.find(n1));
 console.log(`Дерево содержит значение ${n2}: `, tree.find(n2));
 console.log(`Дерево содержит значение ${n3}: `, tree.find(n3));
-console.log(` ${"3" + "3" - "3" }:`);
+console.log(` ${"3" + "3" - "3"}:`);

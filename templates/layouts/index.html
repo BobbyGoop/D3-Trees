@@ -1,29 +1,31 @@
 {% extends "layouts/base.html" %}
 {% block title %} {{title}} {% endblock %}
 {% block head %}
-  {{ super() }}
+{{ super() }}
 {% endblock %}
 
 {% block header %}
-  <ul class="mainmenu">
-    <li><a href="/tree-dynamic">Дерево с анимацией</a></li>
-    <li><a href="/graph">Карта метро</a></li>
-    <li><a href="/tree-binary">Бинарное дерево</a></li>
-    <li><a href="/register">Регистрация</a></li>
-  </ul>
+<ul class="mainmenu">
+  <li><a href="/tree-dynamic">Дерево с анимацией</a></li>
+  <li><a href="/graph">Карта метро</a></li>
+  <li><a href="/tree-binary">Бинарное дерево</a></li>
+  <li><a href="/register">Регистрация</a></li>
+</ul>
 {% endblock %}
 
 
 {% block bg %}
-      <div class="waveWrapper waveAnimation">
-        <div class="waveWrapperInner bgTop">
-          <div class="wave waveTop" style="background-image: url('http://front-end-noobs.com/jecko/img/wave-top.png')"></div>
-        </div>
-        <div class="waveWrapperInner bgMiddle">
-          <div class="wave waveMiddle" style="background-image: url('http://front-end-noobs.com/jecko/img/wave-mid.png')"></div>
-        </div>
-        <div class="waveWrapperInner bgBottom">
-          <div class="wave waveBottom" style="background-image: url('http://front-end-noobs.com/jecko/img/wave-bot.png')"></div>
-        </div>
-      </div>
+<div class="waveWrapper waveAnimation">
+  <div class="waveWrapperInner bgTop">
+    <div class="wave waveTop" style="background-image: url('http://front-end-noobs.com/jecko/img/wave-top.png')"></div>
+  </div>
+  <div class="waveWrapperInner bgMiddle">
+    <div class="wave waveMiddle" style="background-image: url('http://front-end-noobs.com/jecko/img/wave-mid.png')">
+    </div>
+  </div>
+  <div class="waveWrapperInner bgBottom">
+    <div class="wave waveBottom" style="background-image: url('http://front-end-noobs.com/jecko/img/wave-bot.png')">
+    </div>
+  </div>
+</div>
 {% endblock %}
