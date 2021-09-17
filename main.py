@@ -33,11 +33,6 @@ def resources(resource_name):
         return send_file('./templates/static/js/data.json')
 
 
-@app.route('/tree-dynamic')
-def dynamic_tree():
-    return render_template("layouts/dynamic.html", title="Бинарное дерево")
-
-
 @app.route('/register')
 def register():
     return render_template("layouts/register.html", title="Регистрация")
