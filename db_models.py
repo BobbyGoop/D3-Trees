@@ -8,7 +8,7 @@ class Client(Base):
     id = Column(Integer, primary_key=True)
     name = Column(String(250))
     surname = Column(String(250))
-    email = Column(String(250))
+    email = Column(String(250), unique=True)
 
     def __init__(self, name, surname, email):
         self.name = name
