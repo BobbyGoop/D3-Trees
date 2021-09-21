@@ -5,7 +5,19 @@ from db_models import *
 from db_setup import db_session
 
 
+def validate_data(data, attr):
+    # Если не передано значение
+    if not data:
+        return None
+    # Если переданы неправильные атрибуты
+    if not (set(data.keys()) <= set(attr)):
+        return None
+    return data
+
+
 class ClientWrapper(Resource):
+    attributes = Client.__table__.columns.keys()
+
     def __init__(self):
         self.parser = reqparse.RequestParser()
         self.parser.add_argument('client_id', type=int, help="Enter the client id")
@@ -13,20 +25,9 @@ class ClientWrapper(Resource):
         self.parser.add_argument('client_surname', type=str, help="Enter the client surname")
         self.parser.add_argument('client_email', type=str, help="Enter the client email")
 
-    @classmethod
-    def validate_data(cls, data):
-        # Если не передано значение
-        if not data:
-            return None
-        # Если переданы неправильные атрибуты
-        if not (set(data.keys()) <= set(Client.__table__.columns.keys())):
-            return None
-        return data
-
     # Only PARAMS
     def get(self):
         _id = self.parser.parse_args().get('client_id')
-
         return db_session.query(Client).get(_id).serialize() if _id else \
             list(map(lambda cl: cl.serialize(), db_session.query(Client).all()))
 
@@ -34,8 +35,8 @@ class ClientWrapper(Resource):
         _name = self.parser.parse_args().get('client_name')
         _surname = self.parser.parse_args().get('client_surname')
         _email = self.parser.parse_args().get('client_email')
-        if _name and _surname and _email:
-            try:
+        try:
+            if _name and _surname and _email:
                 c = Client(_name, _surname, _email)
                 db_session.add(c)
                 db_session.flush()
@@ -43,31 +44,25 @@ class ClientWrapper(Resource):
                 db_session.commit()
                 print("Добавлено")
                 return redirect(url_for('register'))
-            except IntegrityError:
-                db_session.rollback()
-                return {"message": "Email is already registered"}, 400
-        elif request.content_type == 'application/json':
-            data = self.validate_data(request.get_json(force=True))
-            if not data:
-                return {"message": "Bad request"}, 400
-            if list(data.keys()) != ["name", "surname", "email"]:
-                return {"message": "Bad request"}, 400
-            try:
+            elif request.content_type == 'application/json':
+                data = validate_data(request.get_json(force=True), self.attributes)
+                if not data:
+                    return {"message": "Bad request"}, 400
+                if list(data.keys()) != ["name", "surname", "email"]:
+                    return {"message": "Bad request"}, 400
                 db_session.add(Client(data["name"], data["surname"], data["email"]))
                 db_session.commit()
-            except IntegrityError:
-                db_session.rollback()
+            else:
                 return {"message": "Bad request"}, 400
-        else:
-            # db_session.rollback()
-            print("Ошибка добавления в БД")
-            return None, 400
+        except IntegrityError:
+            db_session.rollback()
+            return {"message": "Bad request"}, 400
 
     # Only JSON
     def patch(self):
         if request.content_type != 'application/json':
             return {"message": "Invalid content type"}, 400
-        data = self.validate_data(request.get_json(force=True))
+        data = validate_data(request.get_json(force=True), self.attributes)
         try:
             if data['id'] is None:
                 raise TypeError
@@ -97,6 +92,8 @@ class ClientWrapper(Resource):
 
 
 class OrderWrapper(Resource):
+    attributes = Order.__table__.columns.keys()
+
     def __init__(self):
         self.parser = reqparse.RequestParser()
         self.parser.add_argument('order_id', type=int)
@@ -121,17 +118,53 @@ class OrderWrapper(Resource):
         _cid = self.parser.parse_args().get('client_id')
         _total = self.parser.parse_args().get('total')
         try:
-            c = db_session.query(Client).get(_cid)
-            db_session.add(Order(c.id, c.name, _total))
-            db_session.commit()
-            print("Добавлено")
+            if _cid and _total:
+                c = db_session.query(Client).get(_cid)
+                db_session.add(Order(c.id, c.name, _total))
+                db_session.commit()
+                print("Добавлено")
+            elif request.content_type == 'application/json':
+                data = validate_data(request.get_json(force=True), self.attributes)
+                if not data:
+                    return {"message": "Bad request"}, 400
+                if list(data.keys()) != ["client_id", "total"]:
+                    return {"message": "Bad request"}, 400
+                c = db_session.query(Client).get(_cid)
+                db_session.add(Order(c.id, c.name, _total))
+                db_session.commit()
+            else:
+                return {"message": "Bad request"}, 400
         except AttributeError:
             db_session.rollback()
-            print("Ошибка добавления в БД")
-            return None, 400
+            return {"message": "Bad request"}, 400
 
     def patch(self):
-        pass
+        if request.content_type != 'application/json':
+            return {"message": "Invalid content type"}, 400
+        data = validate_data(request.get_json(force=True), self.attributes)
+        try:
+            if data['id'] is None:
+                raise TypeError
+            order = db_session.query(Order).get(data['id'])
+            attributes = list(data.keys())
+            for attr in attributes[1:]:
+                setattr(order, attr, data[attr])
+                db_session.flush()
+            db_session.commit()
+        except (TypeError, AttributeError):
+            db_session.rollback()
+            return {"message": "Wrong params"}, 400
 
+    # Only PARAMS
     def delete(self):
-        pass
+        _id = self.parser.parse_args().get('order_id')
+        if _id:
+            order = db_session.query(Order).get(_id)
+            print(order)
+            if order:
+                db_session.delete(order)
+                db_session.commit()
+            else:
+                return {"message": "Order not found"}, 400
+        else:
+            return {"message": "Bad request"}, 400
