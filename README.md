@@ -1,5 +1,5 @@
-## D3.js Trees and Graphs representations
+## Trees and Graphs representations
 
-
+> This version uses Flask-SQLAlchemy framework
  
  

@@ -1,14 +1,13 @@
 from datetime import datetime
-from sqlalchemy import Column, Integer, String, DateTime, ForeignKey
-from db_setup import Base
+from main import db
 
 
-class Client(Base):
+class Client(db.Model):
     __tablename__ = 'clients'
-    id = Column(Integer, primary_key=True)
-    name = Column(String(250))
-    surname = Column(String(250))
-    email = Column(String(250))
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(250))
+    surname = db.Column(db.String(250))
+    email = db.Column(db.String(250))
 
     def __init__(self, name, surname, email):
         self.name = name
@@ -21,14 +20,27 @@ class Client(Base):
     def serialize(self):
         return {"id": self.id, "name": self.name, "surname": self.surname, "email": self.email}
 
+    def create(self):
 
-class Order(Base):
+
+    def delete(self):
+        try:
+
+            print(self)
+            db.delete(self)
+            db.commit()
+        except:
+            db.rollback()
+            return {'message': "Such record does not exist"}, 400
+
+
+class Order(db.Model):
     __tablename__ = 'orders'
-    id = Column(Integer, primary_key=True)
-    client_id = Column(Integer, ForeignKey('clients.id'))
-    client_name = Column(String, nullable=False)
-    created_at = Column(DateTime, nullable=False)
-    total = Column(Integer, nullable=False)
+    id = db.Column(db.Integer, primary_key=True)
+    client_id = db.Column(db.Integer, db.ForeignKey('clients.id'))
+    client_name = db.Column(db.String, nullable=False)
+    created_at = db.Column(db.DateTime, nullable=False)
+    total = db.Column(db.Integer, nullable=False)
 
     def __init__(self, client_id, client_name, total):
         self.client_id = client_id
@@ -43,3 +55,7 @@ class Order(Base):
         return {"id": self.id, "client_name": self.client_name,
                 "client_id": self.client_id, "created_at": str(self.created_at),
                 "total": self.total}
+
+    def create(self):
+        db.add(self)
+        db.commit()
