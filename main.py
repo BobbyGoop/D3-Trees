@@ -1,17 +1,17 @@
 import os
-
 from flask import Flask, render_template, send_file
 from flask_restful import Api
-from flask_sqlalchemy import SQLAlchemy
+from db_setup import db
+from api import ClientWrapper, OrderWrapper
+
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///store.db'
 app._static_folder = os.path.abspath("templates/static/")
 
 
-from api import ClientWrapper, OrderWrapper
 api = Api(app)
-api.add_resource(ClientWrapper, '/api/clients/')
+api.add_resource(ClientWrapper, '/api/clients/', '/api/clients/<int:client_id>')
 api.add_resource(OrderWrapper, '/api/orders/')
 
 
@@ -41,11 +41,8 @@ def register():
     return render_template("layouts/register.html", title="Регистрация")
 
 
-# @app.teardown_appcontext
-# def shutdown_session(exception=None):
-#     db_session.remove()
-
-
 if __name__ == '__main__':
-    db.create_all()
+    db.init_app(app)
+    with app.app_context():
+        db.create_all()
     app.run(debug=True)

@@ -5,7 +5,7 @@ pyenv.cfg
 # Editors
 .vscode/
 .idea/
-
+tests.py
 # Vagrant
 .vagrant/
 

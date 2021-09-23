@@ -1,6 +1,5 @@
-from flask import jsonify, url_for, request
+from flask import jsonify, request
 from flask_restful import Resource, reqparse
-from werkzeug.utils import redirect
 
 from db_models import Client, Order
 
@@ -15,11 +14,6 @@ parser.add_argument('total', type=int, help="Enter the order id")
 
 
 class ClientWrapper(Resource):
-    def __init__(self):
-        self._id = parser.parse_args().get('client_id')
-        self._name = parser.parse_args().get('client_name')
-        self._surname = parser.parse_args().get('client_surname')
-        self._email = parser.parse_args().get('client_email')
 
     @classmethod
     def validate_data(cls, data):
@@ -33,24 +27,39 @@ class ClientWrapper(Resource):
             return None
         return data
 
-    def get(self):
-        if self._id:
-            return jsonify(Client.query().get(self._id).serialize())
-        else:
-            return {"clients": list(map(lambda cl: cl.serialize(), Client.query().all()))}
+    @staticmethod
+    def get(client_id=None):
+        data = request.data
+        print(data)
+        try:
+            return Client.query.get(client_id).serialize() if client_id else \
+                list(map(lambda cl: cl.serialize(), Client.query.all()))
+        except AttributeError:
+            return {"message": "Bad request"}
 
-    def post(self):
-        c = Client(self._name, self._surname, self._email)
-        c.create()
-            # return {'message': 'Wrong attributes'}, 400
-        return redirect(url_for('register'))
+    @staticmethod
+    def post():
+        data = request.get_json(force=True)
+        print(data)
+        # data = self.validate_data(request.get_json(force=True))
+        try:
+            if Client(data['name'], data['surname'], data['email']).create():
+                return 200
+            else:
+                return None, 400
+        except TypeError:
+            return None, 400
+        # c = Client(self._name, self._surname, self._email)
+        # c.create()
+        #     # return {'message': 'Wrong attributes'}, 400
+        # return redirect(url_for('register'))
 
     def patch(self):
         if request.content_type != 'application/json':
             return {'message': 'Request content type should be <application/json>'}, 400
         data = self.validate_data(request.get_json(force=True))
         if data:
-            client = Client.query().get(data['id'])
+            client = Client.query.get(data['id'])
             attributes = list(data.keys())
             for attr in attributes[1:]:
                 setattr(client, attr, data[attr])
@@ -58,17 +67,14 @@ class ClientWrapper(Resource):
         else:
             return {'message': 'Specified attributes are wrong ot do not exist'}, 400
 
-    def delete(self):
-        if request.content_type != 'application/json':
-            return {'message': 'Request content type should be <application/json>'}, 400
-        data = self.validate_data(request.get_json(force=True))
-        if data:
-            if list(data.keys()) != ['id']:
-                return {'message': 'The <DELETE> request must contain only one parameter: id'}, 400
-            client = Client.query().get(data['id'])
-            client.delete()
-        else:
-            return {'message': 'Wrong data passed'}, 400
+    @staticmethod
+    def delete(client_id=None):
+        # data = request.data
+        # print(data)
+        try:
+            Client.query.get(client_id).delete()
+        except AttributeError:
+            return {"message": "Bad request"}
 
 
 class OrderWrapper(Resource):
