@@ -1,6 +1,6 @@
 from datetime import datetime
 from sqlalchemy.exc import IntegrityError
-from db_setup import db
+from src.database.setup import db
 
 
 class Client(db.Model):

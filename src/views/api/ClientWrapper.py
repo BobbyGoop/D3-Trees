@@ -1,22 +1,19 @@
-from flask import jsonify, request
-from flask_restful import Resource, reqparse
+from flask import request
+from flask_restful import Resource
 
-from db_models import Client, Order
-
-parser = reqparse.RequestParser()
-parser.add_argument('client_id', type=int, help="Enter the client id")
-parser.add_argument('client_name', type=str, help="Enter the client name")
-parser.add_argument('client_surname', type=str, help="Enter the client surname")
-parser.add_argument('client_email', type=str, help="Enter the client email")
-
-parser.add_argument('order_id', type=int, help="Enter the order id")
-parser.add_argument('total', type=int, help="Enter the order id")
+from src.database.models import Client
 
 
 class ClientWrapper(Resource):
 
     @classmethod
     def validate_data(cls, data):
+        """
+          The function used to validate data
+          :param dict data: actual data to check
+          :returns: None - if data is not valid, data - if success
+          """
+
         if not data:
             return None
         if not (set(data.keys()) <= set(Client.__table__.columns.keys())):
@@ -75,42 +72,3 @@ class ClientWrapper(Resource):
             Client.query.get(client_id).delete()
         except AttributeError:
             return {"message": "Bad request"}
-
-
-class OrderWrapper(Resource):
-    def __init__(self):
-        self._cid = parser.parse_args().get('client_id')
-        self._id = parser.parse_args().get('order_id')
-        self._total = parser.parse_args().get('total')
-
-    def get(self):
-        if not self._cid and not self._id:
-            return {'orders': list(map(lambda cl: cl.serialize(), Order.query.all()))}
-        elif self._cid and self._id:
-            ordr = Client.query().get(self._id)
-            if ordr and (ordr.client_id == self._cid):
-                return jsonify(ordr.serialize()), 200
-            else:
-                return None, 404
-        elif self._cid and not self._id:
-            return list(map(lambda o: o.serialize(), filter(lambda o: o.client_id == self._cid, Order.query().all())))
-
-    def post(self):
-        # try:
-        if self._cid and self._total:
-            cl = Client.query().get(self._cid)
-            if cl:
-                order = Order(cl.id, cl.name, self._total)
-                order.create()
-        else:
-            return {'message': 'Wrong attributes'}, 400
-        # except AttributeError:
-        #     db.rollback()
-        #     print("Ошибка добавления в БД")
-        #     return {'message': 'Specified client does not exist'}, 400
-
-    def patch(self):
-        pass
-
-    def delete(self):
-        pass

@@ -1,4 +1,4 @@
-{% extends "layouts/base.html" %}
+{% extends "layout.html" %}
 {% block title %} {{title}} {% endblock %}
 {% block head %}
 {{ super() }}
@@ -6,8 +6,8 @@
 
 {% block header %}
 <ul class="mainmenu">
-  <li><a href="/graph">Карта метро</a></li>
-  <li><a href="/tree-binary">Бинарное дерево</a></li>
+  <li><a href="/metro">Карта метро</a></li>
+  <li><a href="/tree">Бинарное дерево</a></li>
   <li><a href="/register">Регистрация</a></li>
 </ul>
 {% endblock %}
