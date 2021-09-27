@@ -1,7 +1,7 @@
 from flask import request
 from flask_restful import Resource
 
-from src.database.models import Client
+from src.database.models.Client import Client
 
 
 class ClientWrapper(Resource):

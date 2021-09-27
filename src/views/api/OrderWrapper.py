@@ -1,7 +1,8 @@
 from flask import request
 from flask_restful import Resource
 
-from src.database.models import Order, Client
+from src.database.models.Client import Client
+from src.database.models.Order import Order
 
 
 class OrderWrapper(Resource):
@@ -71,7 +72,7 @@ class OrderWrapper(Resource):
         # except AttributeError:
         #     database.rollback()
         #     print("Ошибка добавления в БД")
-        #     return {'message': 'Specified client does not exist'}, 400
+        #     return {'message': 'Specified models does not exist'}, 400
 
     def patch(self):
         if request.content_type != 'application/json':
