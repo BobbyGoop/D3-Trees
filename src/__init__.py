@@ -17,30 +17,4 @@ if __name__ == '__main__':
     initialise_db(app)
     initialise_contents(app)
     initialise_resources(api)
-    app.run(debug=True)
-
-#
-# @app.route('/')
-# def hello_world():
-#     return render_template("index.html", title="Главная")
-#
-#
-# @app.route('/tree-binary')
-# def binary_tree():
-#     return render_template("tree.html", title="Бинарное дерево")
-#
-#
-# @app.route('/graph')
-# def graph():
-#     return render_template("metro.html", title="Бинарное дерево")
-#
-#
-#
-#
-#
-# @app.route('/register')
-# def register():
-#     return render_template("register.html", title="Регистрация")
-
-
-
+    app.run(debug=True, host='127.0.0.1', port=5000)
