@@ -1,6 +1,6 @@
 from flask import request
 from flask_restful import Resource
-
+from flask_jwt_extended import jwt_required
 from src.database.models.Client import Client
 
 
@@ -25,6 +25,7 @@ class ClientWrapper(Resource):
         return data
 
     @staticmethod
+    @jwt_required()
     def get(client_id=None):
         data = request.data
         print(data)
@@ -40,16 +41,11 @@ class ClientWrapper(Resource):
         print(data)
         # data = self.validate_data(request.get_json(force=True))
         try:
-            if Client(data['name'], data['surname'], data['email']).create():
-                return 200
-            else:
-                return None, 400
-        except TypeError:
-            return None, 400
-        # c = Client(self._name, self._surname, self._email)
-        # c.create()
-        #     # return {'message': 'Wrong attributes'}, 400
-        # return redirect(url_for('register'))
+            client = Client(data['name'], data['surname'], data['email'], data['password'])
+            client.create()
+            return {"access_token": client.get_token()}
+        except (TypeError, KeyError):
+            return {"message": "Bad request"}, 400
 
     def patch(self):
         if request.content_type != 'application/json':

@@ -7,10 +7,9 @@ client_params = {'client_name': 'test',
 				 'client_surname': 'testoviy',
 				 'client_email': 'ivans200188@gmail.com'}
 
-client_post = {
-		"name": "slave",
-		"surname": "slave",
-		"email": "dasdad"
+client_json = {
+		"email": "asdasd@123",
+		"password": "123"
 }
 
 client_patch = {
@@ -22,7 +21,7 @@ client_patch = {
 
 # r = requests.get(" http://127.0.0.1:5000/api/clients/")
 # r = requests.post(" http://127.0.0.1:5000/api/clients/", params = client_params)
-# r = requests.post(" http://127.0.0.1:5000/api/clients/", json = json_post)
+r = requests.post(" http://127.0.0.1:5000/api/auth/", json = client_json)
 # r = requests.patch(" http://127.0.0.1:5000/api/clients/", headers = headers, json = json_patch)
 # r = requests.patch(" http://127.0.0.1:5000/api/clients/", params = client_params)
 # r = requests.delete("http://127.0.0.1:5000/api/clients/", params = {"client_id": 3})
@@ -49,7 +48,7 @@ order_patch = {
 
 # r = requests.get(" http://127.0.0.1:5000/api/orders/", params = order_params)
 # r = requests.post("http://127.0.0.1:5000/api/orders/", json = order_params)
-r = requests.patch(" http://127.0.0.1:5000/api/orders/", json = order_patch )
+# r = requests.patch(" http://127.0.0.1:5000/api/orders/", json = order_patch )
 # r = requests.delete("http://127.0.0.1:5000/api/orders/1",)
 
 print(r.text)
