@@ -2,12 +2,14 @@ import os
 from flask import Flask
 from flask_restful import Api
 from flask_jwt_extended import JWTManager
-from uuid import uuid4
+
+from src.database.models.TokenBlocklist import TokenBlocklist
 from src.database.setup import db
 
 from src.views.api.ClientWrapper import ClientWrapper
 from src.views.api.OrderWrapper import OrderWrapper
-from src.views.api.AuthWrapper import AuthWrapper
+from src.views.api.LoginWrapper import LoginWrapper
+from src.views.api.LogoutWrapper import LogoutWrapper
 
 from src.views.contents.home import home
 from src.views.contents.metro import metro
@@ -23,6 +25,13 @@ app._static_folder = os.path.abspath("src/static/")
 
 api = Api(app)
 jwt = JWTManager(app)
+
+@jwt.token_in_blocklist_loader
+def check_if_token_revoked(jwt_header, jwt_payload):
+    jti = jwt_payload["jti"]
+    token = db.session.query(TokenBlocklist.id).filter_by(jti=jti).scalar()
+    return token is not None
+
 
 if __name__ == '__main__':
 
@@ -41,6 +50,7 @@ if __name__ == '__main__':
     # Adding API resources
     api.add_resource(ClientWrapper, '/api/clients/', '/api/clients/<int:client_id>')
     api.add_resource(OrderWrapper, '/api/orders/', '/api/orders/<int:client_id>', '/api/order/<int:order_id>')
-    api.add_resource(AuthWrapper, '/api/auth/')
+    api.add_resource(LoginWrapper, '/api/login/')
+    api.add_resource(LogoutWrapper, '/api/logout/')
     # RUNNING
     app.run(debug=True, host='127.0.0.1', port=5000)

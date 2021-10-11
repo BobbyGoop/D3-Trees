@@ -414,40 +414,19 @@ function randomArray(count, min, max) {
     return arr;
 }
 
-var array_1 = [6, 2, 8, 3, 0, 7, 9, 1, 5];
-
-var array_2 = randomArray(15, 0, 50)
-
-var array_3 = [50, 30, 70, 20, 40, 60, 80]
+var array = randomArray(15, 0, 50)
 
 var ideal = [40, 50, 30, 20, 36, 16, 25, 34, 38, 60, 46, 64, 56, 48, 43,
     14, 17, 23, 26, 32, 35, 37, 39, 42, 44, 47, 49, 54, 58, 62, 66]
 
 var tree = new BinarySearchTree();
-array_2.forEach(el => tree.insert(el))
-
-console.log('Высота:', tree.findHeight())
-
-//tree.remove(60);
-tree.remove(30);
-tree.remove(20);
-
+array.forEach(el => tree.insert(el))
 tree.drawCircles();
 tree.drawLinks();
 
-console.log(tree.toArray());
-console.log("\n\nОбход дерева зиг-загом", tree.traverseZigZag()); // [6, 8, 2, 0, 4, 7, 9, 5, 3]
-console.log(" Обход дерева по уровням", tree.traverseBFS()); // [6, 2, 8, 0, 4, 7, 9, 3, 5]
+console.log('Высота:', tree.findHeight())
+console.log(" Обход дерева зиг-загом", tree.traverseZigZag());
+console.log(" Обход дерева по уровням", tree.traverseBFS());
 console.log(" Прямой обход: ", tree.printPreOrder((key) => console.log(key.value)));
 console.log(" Центрированный обход: ", tree.printInOrder((key) => console.log(key.value)));
 console.log(" Обратный обход: ", tree.printPostOrder((key) => console.log(key.value)));
-
-console.log("Высота дерева: ", tree.findHeight());
-
-var n1 = 50;
-var n2 = 30;
-var n3 = 20;
-console.log(`Дерево содержит значение ${n1}: `, tree.find(n1));
-console.log(`Дерево содержит значение ${n2}: `, tree.find(n2));
-console.log(`Дерево содержит значение ${n3}: `, tree.find(n3));
-console.log(` ${"3" + "3" - "3"}:`);

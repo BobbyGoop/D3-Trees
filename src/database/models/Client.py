@@ -25,10 +25,10 @@ class Client(db.Model):
     def serialize(self):
         return {"id": self.id, "name": self.name, "surname": self.surname, "email": self.email}
 
-    def get_token(self, expire_time=24):
+    def get_token(self, expire_time=10):
         return create_access_token(
             identity=self.id,
-            expires_delta=timedelta(expire_time))
+            expires_delta=timedelta(seconds=expire_time))
 
     @classmethod
     def authenticate(cls, email, password):

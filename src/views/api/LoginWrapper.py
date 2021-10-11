@@ -4,7 +4,7 @@ from flask_restful import Resource
 from src.database.models.Client import Client
 
 
-class AuthWrapper(Resource):
+class LoginWrapper(Resource):
 
 	def post(self):
 		data = request.get_json(force=True)

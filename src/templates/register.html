@@ -1,92 +1,122 @@
 {% extends "layout.html" %}
 {% block title %} {{title}} {% endblock %}
 {% block head %}
-    {{ super() }}
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/static/css/card.css">
+{{ super() }}
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/static/css/card.css">
 {% endblock %}
 
 {% block header %}
-  <ul class="mainmenu">
-    <li><a href="/">На главную</a></li>
-  </ul>
+<ul class="mainmenu">
+  <li><a href="/">На главную</a></li>
+</ul>
 {% endblock %}
 
 {% block content %}
-  <div class="container">
-        <div class="card card-color">
-                <!--
-                <div class="inputs">
-                  {% for cat, msg in get_flashed_messages(True) %}
-                  <div class="flash {{cat}}">{{msg}}</div>
-                  {% endfor %}
-                  <form action="/api/clients/" method="post" class="form-contact">
-                  <p><label>Имя: </label> <input type="text" name="client_name" value="" required />
-                  <p><label>Фамилия: </label> <input type="text" name="client_surname" value="" required />
-                  <p><label>Email: </label> <input type="text" name="client_email" value="" required />
-                </div>
-                <div class="register">
-                  <button type = "submit">Зарегестрироваться</button>
-                </div>
-                -->
-                <form action="" id="sampleForm">
-                  <h2>Sample Form to JSON API</h2>
-                  <div class="form-row">
-                      <label for="name">Your Name</label>
-                      <input type="text" class="input-text input-text-block w-100" id="name" name="name" required>
-                  </div>
-                  <div class="form-row">
-                      <label for="surname">Your Surname</label>
-                      <input type="text" class="input-text input-text-block w-100" id="surname" name="surname" required>
-                  </div>
-                  <div class="form-row">
-                      <label for="email">Email</label>
-                      <input type="email" class="input-text input-text-block w-100" id="email" name="email" required>
-                  </div>
-                  <div class="form-row">
-                    <label for="password">Password</label>
-                    <input type="password" class="input-text input-text-block w-100" id="password" name="password" required>
-                </div>
-                  <div class="form-row mx-auto">
-                      <button type="submit" class="btn-submit" id="btnSubmit">Submit</button>
-                  </div>
-                </form>
-        </div>
-    </div>
-    <script  type="text/javascript" src="static/js/register.js"></script>
-    <script type = "text/javascript">
-      //Movement Animation to happen
-      const card = document.querySelector(".card");
-      const container = document.querySelector(".container");
-
-      //Moving Animation Event
-      container.addEventListener("mousemove", (e) => {
-        let xAxis = (window.innerWidth / 2 - e.pageX) / 35;
-        let yAxis = (window.innerHeight / 2 - e.pageY) / 35;
-        card.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
-      });
-      //Animate In
-      container.addEventListener("mouseenter", (e) => {
-        card.style.transition = "none";
-      });
-      //Animate Out
-      container.addEventListener("mouseleave", (e) => {
-        card.style.transition = "all 0.5s ease";
-        card.style.transform = `rotateY(0deg) rotateX(0deg)`;
-      });
-    </script>
-{% endblock %}
-
-{% block bg %}
-      <div class="waveWrapper waveAnimation">
-        <div class="waveWrapperInner bgTop">
-          <div class="wave waveTop" style="background-image: url('http://front-end-noobs.com/jecko/img/wave-top.png')"></div>
-        </div>
-        <div class="waveWrapperInner bgMiddle">
-          <div class="wave waveMiddle" style="background-image: url('http://front-end-noobs.com/jecko/img/wave-mid.png')"></div>
-        </div>
-        <div class="waveWrapperInner bgBottom">
-          <div class="wave waveBottom" style="background-image: url('http://front-end-noobs.com/jecko/img/wave-bot.png')"></div>
-        </div>
+<div class="container">
+  <div class="card card-color">
+    <form action="" id="sampleForm">
+      <h2>Registration</h2>
+      <div class="form-row">
+        <label for="name">Your Name</label>
+        <input type="text" class="input-text input-text-block w-100" id="name" name="name" required>
       </div>
+      <div class="form-row">
+        <label for="surname">Your Surname</label>
+        <input type="text" class="input-text input-text-block w-100" id="surname" name="surname" required>
+      </div>
+      <div class="form-row">
+        <label for="email">Email</label>
+        <input type="email" class="input-text input-text-block w-100" id="email" name="email" required>
+      </div>
+      <div class="form-row">
+        <label for="password">Password</label>
+        <input type="password" class="input-text input-text-block w-100" id="password" name="password" required>
+      </div>
+      <div class="form-row mx-auto">
+        <button type="submit" class="btn-submit" id="btnSubmit">Submit</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script type="text/javascript">
+  async function submitForm(e, form) {
+    e.preventDefault();
+    const btnSubmit = document.getElementById('btnSubmit');
+    
+    btnSubmit.disabled = true;
+    setTimeout(() => btnSubmit.disabled = false, 2000);
+    
+    const jsonFormData = buildJsonFormData(form);
+    console.log(jsonFormData)
+    
+    const headers = { "Content-Type": "application/json" }
+
+    const response = await performPostHttpRequest(`/api/clients/`, headers, jsonFormData);
+    console.log(response);
+
+    if (response)
+      window.location.reload(true);
+    else
+      alert(`An error occured.`);
+  }
+
+  function buildJsonFormData(form) {
+    const jsonFormData = {};
+    for (const pair of new FormData(form)) {
+      jsonFormData[pair[0]] = pair[1];
+    }
+    return jsonFormData;
+  }
+
+  async function performPostHttpRequest(fetchLink, headers, body) {
+    if (!fetchLink || !headers || !body) {
+      throw new Error("One or more POST request parameters was not passed.");
+    }
+    try {
+      const rawResponse = await fetch(fetchLink, {
+        method: "POST",
+        headers: headers,
+        body: JSON.stringify(body)
+      });
+      const content = await rawResponse.json();
+      return content;
+    }
+    catch (err) {
+      console.error(`Error at fetch POST: ${err}`);
+      throw err;
+    }
+  }
+  /*--/Functions--*/
+
+  /*--Event Listeners--*/
+  const sampleForm = document.querySelector("#sampleForm");
+  if (sampleForm) {
+    sampleForm.addEventListener("submit", function (e) {
+      submitForm(e, this);
+    });
+  }
+</script>
+<script type="text/javascript">
+  //Movement Animation to happen
+  const card = document.querySelector(".card");
+  const container = document.querySelector(".container");
+
+  //Moving Animation Event
+  container.addEventListener("mousemove", (e) => {
+    let xAxis = (window.innerWidth / 2 - e.pageX) / 35;
+    let yAxis = (window.innerHeight / 2 - e.pageY) / 35;
+    card.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
+  });
+  //Animate In
+  container.addEventListener("mouseenter", (e) => {
+    card.style.transition = "none";
+  });
+  //Animate Out
+  container.addEventListener("mouseleave", (e) => {
+    card.style.transition = "all 0.5s ease";
+    card.style.transform = `rotateY(0deg) rotateX(0deg)`;
+  });
+</script>
 {% endblock %}
