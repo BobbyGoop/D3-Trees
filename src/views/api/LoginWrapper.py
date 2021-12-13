@@ -5,6 +5,9 @@ from src.database.models.Client import Client
 
 
 class LoginWrapper(Resource):
+	"""
+	Wraps the log in process
+	"""
 
 	def post(self):
 		data = request.get_json(force=True)
