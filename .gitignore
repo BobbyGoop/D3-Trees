@@ -1,6 +1,6 @@
 *.db
 pyenv.cfg
-
+export-code
 
 # Editors
 .vscode/
