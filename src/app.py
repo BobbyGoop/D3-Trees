@@ -50,7 +50,7 @@ def show_page_3():
 
 
 if __name__ == '__main__':
-    print(f"Registered static folder: \n{app._static_folder}\n")
+    # print(f"Registered static folder: \n{app._static_folder}\n")
     # Setting up database
     db.init_app(app)
     with app.app_context():
@@ -71,3 +71,4 @@ if __name__ == '__main__':
     # RUNNING
 
     app.run(debug=True, host='127.0.0.1', port=5000)
+
