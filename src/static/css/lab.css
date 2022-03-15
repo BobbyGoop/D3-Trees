@@ -1,0 +1,32 @@
+h1 {
+    font-family: "Comic Sans MS", serif;
+    font-style: oblique;
+    font-size: 30px;
+    font-weight: lighter;
+    color: #fdc073;
+    text-align: center;
+    margin-top: 2rem;
+}
+h2 {
+    font-family: "Times New Roman", serif;
+    font-style: italic;
+    font-size: medium;
+    font-weight: 900;
+    color: #27273c;
+}
+
+ol {
+    list-style-type:decimal-leading-zero;
+}
+
+ul {
+    list-style-type: disc;
+    list-style-position: inside;
+}
+
+img {
+    width: 100%;
+    height: auto;
+    vertical-align: auto;
+    object-fit: contain;
+}

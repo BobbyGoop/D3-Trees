@@ -1,15 +1,21 @@
 html, body {
-	font-family: 'Arial';
 	margin: 0;
 	padding: 0;
-	height: 100%;
 	width: 100%;
+    background-image: linear-gradient(to top, #fdc073 60px, #27273c 90%);
+}
+
+.content-wrap {
+  position: relative;
+  min-height: 100vh;
+  height: fit-content;
 }
 
 a {
 	color: #0059b2;
 	text-decoration: none;
 }
+
 a:hover {
 	color: #CC0000;
 	text-decoration: underline;
@@ -18,7 +24,6 @@ a:hover {
 .clear {clear: both;}
 
 div.header {
-    position: absolute;
     width: 100%;
     text-align: center;
     height: 60px;
@@ -26,35 +31,38 @@ div.header {
     z-index: 3;
 }
 
+
 div.content {
-    position: absolute;
     top: 60px;
     width: 100%;
+    height: 100%;
     text-align: center;
     z-index: 3;
-	  margin: auto;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
 }
 
-ul.mainmenu {
-  display: inline-block;
-	list-style: none;
-	margin: 0;
-	padding: 0;
-	color: #fdc073;
-	font-size: 20px;
-	overflow: hidden;
+ul.main-menu {
+    display: inline-block;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    color: #fdc073;
+    font-size: 20px;
+    overflow: hidden;
 
 }
-ul.mainmenu li {
+ul.main-menu li {
 	float: left;
 	margin: 18px 40px 0 50px;
 }
 
-ul.mainmenu li a {
+ul.main-menu li a {
 	color: #fdc073;
 	text-decoration: none;
 }
-ul.mainmenu li a:hover {
+ul.main-menu li a:hover {
 	color: #FDA83D;
 }
 

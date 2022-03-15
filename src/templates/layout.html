@@ -3,17 +3,25 @@
 
 <head>
     {% block head %}
+    <title>{% block title %}{% endblock %}</title>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="/static/css/styles.css">
-    <link rel="stylesheet" type="text/css" href="/static/css/waves.css">
-    <link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.ico') }}">
-    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" type="text/css" href="../static/css/styles.css">
+    <link rel="icon" type="image/x-icon" href="../static/img/favicon.ico">
+    <link href='https://css.gg/arrow-right-r.css' rel='stylesheet'>
+    <link href='https://css.gg/arrow-left-r.css' rel='stylesheet'>
+    <style>
+        .footer {
+        position: fixed;
+        left: 10px;
+        bottom: 5px;
+        right: 10px;
+        }
+        </style>
     {% endblock %}
-</head>
 
 <body>
+<div class="content-wrap">
     <div class="header">
         <header>
             {% block header %}{% endblock %}
@@ -22,23 +30,6 @@
     <div class="content">
         {% block content %}{% endblock %}
     </div>
-    <div class="background">
-        <div class="waveWrapper waveAnimation">
-            <div class="waveWrapperInner bgTop">
-                <div class="wave waveTop"
-                    style="background-image: url('http://front-end-noobs.com/jecko/img/wave-top.png')"></div>
-            </div>
-            <div class="waveWrapperInner bgMiddle">
-                <div class="wave waveMiddle"
-                    style="background-image: url('http://front-end-noobs.com/jecko/img/wave-mid.png')"></div>
-            </div>
-            <div class="waveWrapperInner bgBottom">
-                <div class="wave waveBottom"
-                    style="background-image: url('http://front-end-noobs.com/jecko/img/wave-bot.png')"></div>
-            </div>
-        </div>
-    </div>
-
+</div>
 </body>
-
 </html>
