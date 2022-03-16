@@ -2,7 +2,7 @@ html, body {
 	margin: 0;
 	padding: 0;
 	width: 100%;
-    background-image: linear-gradient(to top, #fdc073 60px, #27273c 90%);
+  background-image: linear-gradient(to top, #fdc073 60px, #27273c 90%);
 }
 
 .content-wrap {
@@ -66,69 +66,5 @@ ul.main-menu li a:hover {
 	color: #FDA83D;
 }
 
-.form-contact {
-  margin-top: 20px;
-    display: inline-block;
-    text-align:right;
-}
 
-.form-contact label {
-	min-width: 80px;
-}
 
-.form-contact p {
-    margin: 10px 0 10px 0;
-}
-
-.form-contact input {
-    margin-left: 10px;
-}
-
-.form-contact input[type=submit], textarea {
-    font-size: 16px;
-}
-
-.form-contact .invalid {
-	background: #FF9898;
-}
-.form-contact .invalid-feedback {
-	color: #CC0000;
-}
-
-.flash {padding: 10px;}
-.flash.success {
-	border: 1px solid #21DB56;
-	background: #AEFFC5;
-}
-.flash.error {
-	border: 1px solid #FF4343;
-	background: #FF9C9C;
-}
-
-.xAxis path,
-.xAxis line {
-  stroke: teal;
-  shape-rendering: crispEdges;
-}
-.xAxis text {
-  font-family: Optima, Futura, sans-serif;
-  font-weight: bold;
-  font-size: 14px;
-  fill: teal;
-}
-
-.node circle {
-  fill: #fff;
-  stroke: steelblue;
-  stroke-width: 3px;
-}
-
-.node text {
-  font: 12px sans-serif;
-}
-
-.link {
-  fill: none;
-  stroke: #ccc;
-  stroke-width: 2px;
-}
