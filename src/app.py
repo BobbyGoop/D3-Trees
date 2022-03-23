@@ -50,6 +50,7 @@ def show_page_3():
 
 
 if __name__ == '__main__':
+    os.environ["FLASK_ENV"] = "dev"
     # print(f"Registered static folder: \n{app._static_folder}\n")
     # Setting up database
     db.init_app(app)
