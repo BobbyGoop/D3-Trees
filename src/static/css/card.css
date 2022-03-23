@@ -8,15 +8,13 @@ h2 {
 }
 .card {
   transform-style: preserve-3d;
+  margin: auto;
   min-height: 14rem;
   width: 20rem;
-  border-radius: 30px;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-  border-radius: 5px;
-  transition: 0.3s;
+  border-radius: 10px;
 }
 .card-color {
-  background: rgb(235,235,235);
   background: linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(252,252,252,1) 42%, rgba(255,255,255,1) 100%);
 }
 .card:hover {
