@@ -3,9 +3,17 @@
 {% block head %}
 {{ super() }}
 <style>
+      .html, body {
+	    margin: 0;
+	    padding: 0;
+	    width: 100%;
+        background-image: url("../static/img/bg-pattern.png");
+        background-repeat: no-repeat;
+        background-size: cover;
+      }
      .main {
             margin: 25px auto;
-            width: 60%;
+            width: 80%;
             height: 60%;
             display: flex;
             flex-direction: column;

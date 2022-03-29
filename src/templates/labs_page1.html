@@ -4,6 +4,13 @@
 {{ super() }}
 <link rel="stylesheet" type="text/css" href="../static/css/lab.css">
  <style>
+        .html, body {
+	    margin: 0;
+	    adding: 0;
+	    width: 100%;
+        background-image: url("../static/img/bg-pattern.png");
+        background-repeat: no-repeat;
+        }
         .main_group {
             margin: 25px auto;
             width: 60%;
@@ -66,7 +73,7 @@
 {% endblock %}
 
 {% block content %}
-<h1>Лабораторная работа по Web-технологиям</h1>
+<h1 style = "color: #27273c">Лабораторная работа по Web-технологиям</h1>
 <div class="main_group">
     <div class = "left-column">
         <h2>Федор Тютчев - "<sup>Зима</sup> недаром <sub>злится...</sub>"</h2>
