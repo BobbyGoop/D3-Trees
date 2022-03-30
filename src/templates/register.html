@@ -16,107 +16,56 @@
 <div class="container">
   <div class="card card-color">
     <form action="" id="sampleForm">
-      <h2>Registration</h2>
-      <div class="form-row">
-        <label for="name">Your Name</label>
-        <input type="text" class="input-text input-text-block w-100" id="name" name="name" required>
+      <h2>Регистрация заявки</h2>
+      <div class="text-row">
+        <label for="fio">ФИО Контактного лица</label>
+        <input type="text" class="input-text" id="fio" name="fio" placeholder="Иванов Иван Иванович" required>
+        <br>
+        <label for="secret">Секретное слово для связи с оператором</label>
+        <input type="password" class="input-text" id="secret" name="secret">
+        <br>
+        <label for="phone">Номер телефона</label>
+        <input type="text" class="input-text" id="phone" name="phone_number" placeholder="8 (123) 456-78-90" required>
+        <br>
+        <label for="address">Полный адрес недвижимости</label>
+        <textarea class="input-text" id="address" name="address" required></textarea>
+        <fieldset>
+          <legend>Тип недвижимости</legend>
+          <div class = "item-group">
+            <label><input type="radio" name="property_type" value="1" checked/> Квартира </label>
+            <label><input type="radio" name="property_type" value="2"/> Загородный дом</label>
+            <label><input type="radio" name="property_type" value="3"/> Апартаменты</label>
+          </div>
+        </fieldset>
+        <fieldset style="margin: 2% 0;">
+        <legend>Тип продажи</legend>
+          <div class = "item-group">
+            <label><input name="sell_type_full" type="checkbox" value="true" checked/> Полная продажа</label>
+            <br>
+            <label><input name="sell_type_long" type="checkbox" value="true"/> Сдача в аренду (длинный срок)</label>
+            <br>
+            <label><input name="sell_type_short" type="checkbox" value="true"/> Сдача в аренду (короткий срок)</label>
+            <br>
+            <label><input name="sell_type_credit" type="checkbox" value="true"/> Продажа в кредит</label>
+          </div>
+        </fieldset>
+        <label for="price">Выберите цену недвижимости</label>
+        <select id="price" name="price_limits" class="input-text" size="1">
+          <option value="lower_1">Цена до 1.000.000 руб</option>
+          <option value="lower_5">Цена до 5.000.000 руб</option>
+          <option value="lower_10">Цена до 10.000.000 руб</option>
+          <option value="lower_20">Цена до 20.000.000 руб</option>
+          <option value="upper_20">Цена от 20.000.000 руб и более</option>
+        </select>
+        <label for="call-date">Введите желаемую дату звонка</label>
+        <input name="call_date" type="date" class="input-text" id="call-date"  required>
       </div>
-      <div class="form-row">
-        <label for="surname">Your Surname</label>
-        <input type="text" class="input-text input-text-block w-100" id="surname" name="surname" required>
-      </div>
-      <div class="form-row">
-        <label for="email">Email</label>
-        <input type="email" class="input-text input-text-block w-100" id="email" name="email" required>
-      </div>
-      <div class="form-row">
-        <label for="password">Password</label>
-        <input type="password" class="input-text input-text-block w-100" id="password" name="password" required>
-      </div>
-      <div class="form-row mx-auto">
-        <button type="submit" class="btn-submit" id="btnSubmit">Submit</button>
+      <div class="buttons">
+        <button type="reset" class="btn-lower" id="btnCancel">Отмена</button>
+        <button type="submit" class="btn-lower" id="btnSubmit">Отправить</button>
       </div>
     </form>
   </div>
 </div>
-
-<script type="text/javascript">
-  async function submitForm(e, form) {
-    e.preventDefault();
-    const btnSubmit = document.getElementById('btnSubmit');
-    
-    btnSubmit.disabled = true;
-    setTimeout(() => btnSubmit.disabled = false, 2000);
-    
-    const jsonFormData = buildJsonFormData(form);
-    console.log(jsonFormData)
-    
-    const headers = { "Content-Type": "application/json" }
-
-    const response = await performPostHttpRequest(`/api/clients/`, headers, jsonFormData);
-    console.log(response);
-
-    if (response)
-      window.location.reload(true);
-    else
-      alert(`An error occured.`);
-  }
-
-  function buildJsonFormData(form) {
-    const jsonFormData = {};
-    for (const pair of new FormData(form)) {
-      jsonFormData[pair[0]] = pair[1];
-    }
-    return jsonFormData;
-  }
-
-  async function performPostHttpRequest(fetchLink, headers, body) {
-    if (!fetchLink || !headers || !body) {
-      throw new Error("One or more POST request parameters was not passed.");
-    }
-    try {
-      const rawResponse = await fetch(fetchLink, {
-        method: "POST",
-        headers: headers,
-        body: JSON.stringify(body)
-      });
-      const content = await rawResponse.json();
-      return content;
-    }
-    catch (err) {
-      console.error(`Error at fetch POST: ${err}`);
-      throw err;
-    }
-  }
-  /*--/Functions--*/
-
-  /*--Event Listeners--*/
-  const sampleForm = document.querySelector("#sampleForm");
-  if (sampleForm) {
-    sampleForm.addEventListener("submit", function (e) {
-      submitForm(e, this);
-    });
-  }
-</script>
-<script type="text/javascript">
-  //Movement Animation to happen
-  const card = document.querySelector(".card");
-  const container = document.querySelector(".container");
-
-  //Moving Animation Event
-  container.addEventListener("mousemove", (e) => {
-    let xAxis = (window.innerWidth / 2 - e.pageX) / 35;
-    let yAxis = (window.innerHeight / 2 - e.pageY) / 35;
-    card.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
-  });
-  //Animate In
-  container.addEventListener("mouseenter", (e) => {
-    card.style.transition = "none";
-  });
-  //Animate Out
-  container.addEventListener("mouseleave", (e) => {
-    card.style.transition = "all 0.5s ease";
-    card.style.transform = `rotateY(0deg) rotateX(0deg)`;
-  });
-</script>
+<script type="text/javascript" src="../static/js/card-animation.js"></script>
 {% endblock %}

@@ -39,13 +39,14 @@ class ClientWrapper(Resource):
     def post():
         data = request.get_json(force=True)
         print(data)
+        return 200
         # data = self.validate_data(request.get_json(force=True))
-        try:
-            client = Client(data['name'], data['surname'], data['email'], data['password'])
-            client.create()
-            return {"access_token": client.get_token()}
-        except (TypeError, KeyError):
-            return {"message": "Bad request"}, 400
+        # try:
+        #     client = Client(data['name'], data['surname'], data['email'], data['password'])
+        #     client.create()
+        #     return {"access_token": client.get_token()}
+        # except (TypeError, KeyError):
+        #     return {"message": "Bad request"}, 400
 
     def patch(self):
         if request.content_type != 'application/json':
