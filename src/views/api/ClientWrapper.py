@@ -29,6 +29,7 @@ class ClientWrapper(Resource):
     def get(client_id=None):
         data = request.data
         print(data)
+        Client.query.get(client_id)
         try:
             return Client.query.get(client_id).serialize() if client_id else \
                 list(map(lambda cl: cl.serialize(), Client.query.all()))

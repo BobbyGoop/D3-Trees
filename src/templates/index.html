@@ -2,13 +2,87 @@
 {% block title %} {{title}} {% endblock %}
 {% block head %}
 {{ super() }}
+<style>
+    #main-footer {
+        background: transparent;
+    }
+    ul.top-menu {
+        display: inline-block;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        color: #fdc073;
+        font-size: 20px;
+    }
+    .top-menu:after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+    .top-menu > li {
+        margin: 18px 40px 0 50px;
+        float: left;
+        position: relative;
+    }
+    .top-menu > li > a {
+        color: #fdc073;
+        text-decoration: none;
+    }
+    .top-menu li a:hover {
+        color: #FDA83D;
+    }
+
+    .sub-menu-link:after {
+        color: inherit;
+        margin-left: 10px;
+    }
+    .sub-menu {
+        text-align: left;
+        background: #27273c;
+        position: absolute;
+        left: 0;
+        top: 100%;
+        z-index: 5;
+        width: 150px;
+        opacity: 0;
+        transform: scaleY(0);
+        transform-origin: 0 0;
+        transition: .5s ease-in-out;
+        border: 2px solid #fdc073;
+    }
+    .sub-menu a {
+        color: #fdc073;
+        text-decoration: none;
+    }
+    .sub-menu > li {
+        margin:0 0 10px 0;
+    }
+    .sub-menu > ul {
+        list-style: none;
+        gap: 10px;
+    }
+    .sub-menu li:last-child a {
+        border-bottom: none;
+    }
+    .top-menu > li:hover .sub-menu {
+      opacity: 1;
+      transform: scaleY(1);
+    }
+</style>
 {% endblock %}
 
 {% block header %}
-<ul class="main-menu">
-  <li><a href="http://127.0.0.1:5000/metro">Карта метро</a></li>
-  <li><a href="http://127.0.0.1:5000/tree">Бинарное дерево</a></li>
-  <li><a href="http://127.0.0.1:5000/register">Регистрация</a></li>
-  <li><a href="http://127.0.0.1:5000/labs/page-one">Лабораторная</a></li>
-</ul>
+    <ul class="top-menu">
+      <li><a href="http://127.0.0.1:5000/metro">Карта метро</a></li>
+      <li><a href="http://127.0.0.1:5000/tree">Бинарное дерево</a></li>
+      <li><a href="" class="sub-menu-link">Лабораторные</a>
+          <ul class="sub-menu">
+            <li><a href="http://127.0.0.1:5000/labs/part-one">Лаба 1 </a></li>
+            <li><a href="http://127.0.0.1:5000/labs/part-two">Лаба 2 </a></li>
+            <li><a href="http://127.0.0.1:5000/labs/part-three">Лаба 3 (таблицы)</a></li>
+            <li><a href="http://127.0.0.1:5000/labs/part-four">Лаба 4 (форма)</a></li>
+            <li><a href="http://127.0.0.1:5000/labs/part-five">Лаба 5 (flex)</a></li>
+          </ul>
+      </li>
+    </ul>
 {% endblock %}

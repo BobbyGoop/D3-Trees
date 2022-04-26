@@ -4,13 +4,6 @@
 {{ super() }}
 <link rel="stylesheet" type="text/css" href="../static/css/lab.css">
  <style>
-        .html, body {
-	    margin: 0;
-	    adding: 0;
-	    width: 100%;
-        background-image: url("../static/img/bg-pattern.png");
-        background-repeat: no-repeat;
-        }
         .main_group {
             margin: 25px auto;
             width: 60%;
@@ -54,13 +47,6 @@
         .other:hover {
             box-shadow: 0 8px 16px 0 #27273c;
         }
-
-        .lower-header {
-            width: 100%;
-            text-align: center;
-            height: 60px;
-            background: #27273c;
-        }
     </style>
 {% endblock %}
 
@@ -68,7 +54,7 @@
 <ul class="main-menu">
     <li><i class="gg-arrow-left-r" style="color: transparent"></i></li>
   <li><a href="/">На главную</a></li>
-  <li><a href="http://127.0.0.1:5000/labs/page-two"><i class="gg-arrow-right-r"></i></a></li>
+  <li><a href="http://127.0.0.1:5000/labs/part-two"><i class="gg-arrow-right-r"></i></a></li>
 </ul>
 {% endblock %}
 
@@ -150,13 +136,12 @@
         </ol>
     </div>
 </div>
+{% endblock %}
 
-<div class = "lower-header">
-    <ul class="main-menu">
+{% block footer %}
+<ul class="main-menu">
     <li><a target="blank" href="labs_page2.html#code_example">Переход к примеру кода</a></li>
     <li><a target="blank" href="mailto:bobbygoop@yandex.ru">Написать автору</a></li>
     <li><a href="../static/files/readme.txt">Скачать методические рекомендации</a></li>
-    </ul>
-</div>
-
+</ul>
 {% endblock %}

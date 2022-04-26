@@ -13,7 +13,6 @@ from src.views.api.LogoutWrapper import LogoutWrapper
 
 from src.views.contents.home import home
 from src.views.contents.metro import metro
-from src.views.contents.register import register
 from src.views.contents.resources import resources
 from src.views.contents.tree import tree
 
@@ -34,24 +33,33 @@ def check_if_token_revoked(jwt_header, jwt_payload):
     return token is not None
 
 
-@app.route('/labs/page-one')
+@app.route('/labs/part-one')
 def show_page_1():
     return render_template('labs_page1.html')
 
 
-@app.route('/labs/page-two')
+@app.route('/labs/part-two')
 def show_page_2():
     return render_template('labs_page2.html')
 
 
-@app.route('/labs/page-three')
+@app.route('/labs/part-three')
 def show_page_3():
     return render_template('labs_page3.html')
 
 
+@app.route('/labs/part-four')
+def show_page_4():
+    return render_template('lab4_form.html')
+
+
+@app.route('/labs/part-five')
+def show_page_5():
+    return render_template('lab5_flex.html')
+
+
 if __name__ == '__main__':
     os.environ["FLASK_ENV"] = "dev"
-    # print(f"Registered static folder: \n{app._static_folder}\n")
     # Setting up database
     db.init_app(app)
     with app.app_context():
@@ -59,7 +67,6 @@ if __name__ == '__main__':
 
     # Registering blueprints
     app.register_blueprint(home)
-    app.register_blueprint(register)
     app.register_blueprint(resources)
     app.register_blueprint(tree)
     app.register_blueprint(metro)

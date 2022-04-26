@@ -1,14 +1,9 @@
 html, body {
 	margin: 0;
 	padding: 0;
-	width: 100%;
-  background-image: linear-gradient(to top, #fdc073 60px, #27273c 90%);
-}
-
-.content-wrap {
-  position: relative;
-  min-height: 100vh;
-  height: fit-content;
+    width: 100%;
+    min-height: 100%;
+    background-image: linear-gradient(to top, #fdc073 60px, #27273c 90%);
 }
 
 a {
@@ -23,21 +18,26 @@ a:hover {
 
 .clear {clear: both;}
 
-div.header {
+#main-header {
     width: 100%;
     text-align: center;
     height: 60px;
     background: #27273c;
-    z-index: 3;
 }
 
+#main-footer {
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    height: 60px;
+    background: #27273c;
+}
 
 div.content {
-    top: 60px;
     width: 100%;
-    height: 100%;
+    min-height: calc(100vh - 120px);
+    position: relative;
     text-align: center;
-    z-index: 3;
     margin: auto;
     display: flex;
     flex-direction: column;
@@ -65,6 +65,7 @@ ul.main-menu li a {
 ul.main-menu li a:hover {
 	color: #FDA83D;
 }
+
 
 
 

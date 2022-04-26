@@ -13,15 +13,14 @@
     {% endblock %}
 
 <body>
-<div class="content-wrap">
-    <div class="header">
-        <header>
-            {% block header %}{% endblock %}
-        </header>
-    </div>
-    <div class="content">
-        {% block content %}{% endblock %}
-    </div>
+<header id="main-header">
+   {% block header %}{% endblock %}
+</header>
+<div class="content">
+    {% block content %}{% endblock %}
 </div>
+<footer id = "main-footer">
+{% block footer %} {% endblock %}
+</footer>
 </body>
 </html>

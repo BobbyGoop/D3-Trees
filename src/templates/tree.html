@@ -6,22 +6,35 @@
 {% block head %}
 {{ super() }}
 <style>
-  circle {
-    fill: white;
-    stroke-width: 0.5px;
-    stroke: black;
-  }
+    .container {
+        height: 800px;
+        width: 1000px;
+        margin: 0 auto;
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        padding: 10px;
+    }
+    #main-footer {
+        background: transparent;
+    }
+    circle {
+        fill: white;
+        stroke-width: 0.5px;
+        stroke: black;
+    }
 
-  line {
-    stroke: black;
-    stroke-width: 1px;
-  }
+    line {
+        stroke: black;
+        stroke-width: 1px;
+    }
 
-  svg {
-    display: block;
-    margin-left: auto;
-    margin-right: auto
-  }
+    svg {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        height: 800px;
+    }
 </style>
 {% endblock %}
 
@@ -32,7 +45,9 @@
 {% endblock %}
 
 {% block content %}
-<svg></svg>
+<div class="container">
+    <svg></svg>
+</div>
 <script src="https://d3js.org/d3.v6.min.js"></script>
 <script type="text/javascript" src="../static/js/binary.js"></script>
 {% endblock %}

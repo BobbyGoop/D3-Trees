@@ -34,9 +34,9 @@
 
 {% block header %}
 <ul class="main-menu">
-  <li><a href="http://127.0.0.1:5000/labs/page-one"><i class="gg-arrow-left-r"></i></a></li>
+  <li><a href="http://127.0.0.1:5000/labs/part-one"><i class="gg-arrow-left-r"></i></a></li>
   <li><a href="/">На главную</a></li>
-  <li><a href="http://127.0.0.1:5000/labs/page-three"><i class="gg-arrow-right-r"></i></a></li>
+  <li><a href="http://127.0.0.1:5000/labs/part-three"><i class="gg-arrow-right-r"></i></a></li>
 </ul>
 {% endblock %}
 
@@ -71,10 +71,12 @@
         </ul>
     </div>
 </div>
+{% endblock %}
 
-<div class = "lower-header">
-    <ul class="main-menu">
-        <li><a href="#start">В начало</a></li>
-    </ul>
+{% block footer %}
+<div class="footer">
+<ul class="main-menu">
+    <li><a href="#start">В начало</a></li>
+</ul>
 </div>
 {% endblock %}
