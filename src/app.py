@@ -35,17 +35,17 @@ def check_if_token_revoked(jwt_header, jwt_payload):
 
 @app.route('/labs/part-one')
 def show_page_1():
-    return render_template('labs_page1.html')
+    return render_template('lab1_base.html')
 
 
 @app.route('/labs/part-two')
 def show_page_2():
-    return render_template('labs_page2.html')
+    return render_template('lab2_text.html')
 
 
 @app.route('/labs/part-three')
 def show_page_3():
-    return render_template('labs_page3.html')
+    return render_template('lab3_table.html')
 
 
 @app.route('/labs/part-four')
@@ -56,6 +56,11 @@ def show_page_4():
 @app.route('/labs/part-five')
 def show_page_5():
     return render_template('lab5_flex.html')
+
+
+@app.route('/labs/part-six')
+def show_page_6():
+    return render_template('lab6_grid.html')
 
 
 if __name__ == '__main__':
@@ -76,7 +81,7 @@ if __name__ == '__main__':
     api.add_resource(OrderWrapper, '/api/orders/', '/api/orders/<int:client_id>', '/api/order/<int:order_id>')
     api.add_resource(LoginWrapper, '/api/login/')
     api.add_resource(LogoutWrapper, '/api/logout/')
-    # RUNNING
 
+    # RUNNING
     app.run(debug=True, host='127.0.0.1', port=5000)
 
