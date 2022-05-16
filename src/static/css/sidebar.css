@@ -1,0 +1,189 @@
+/* Styles for sidebar */
+.btn{
+  position: absolute;
+  top: 15px;
+  left: 45px;
+  height: 45px;
+  width: 45px;
+  text-align: center;
+  background: #1b1b1b;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: left 0.4s ease;
+}
+.btn.click{
+  left: 260px;
+}
+.btn span{
+  color: white;
+  font-size: 28px;
+  line-height: 45px;
+}
+.btn.click span:before{
+  content: '\f00d';
+}
+.sidebar-wrapper {
+  width: 250px;
+  height: 100%;
+  background: #27273c;
+  border: 1px #27273c solid;
+  border-radius: 0.5em;
+  transition: left 0.4s ease;
+}
+.sidebar-wrapper.show{
+  left: 0px;
+}
+.sidebar-wrapper .text{
+  color: white;
+  font-size: 25px;
+  font-weight: 600;
+  line-height: 65px;
+  text-align: center;
+  letter-spacing: 1px;
+}
+.sidebar-wrapper ul{
+  list-style: none;
+}
+.sidebar-wrapper ul li{
+  line-height: 60px;
+  border-top: 1px solid rgba(255,255,255,0.1);
+}
+.sidebar-wrapper ul li:last-child{
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+.sidebar-wrapper ul li a{
+  position: relative;
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: 500;
+  display: block;
+  border-left: 3px solid transparent;
+}
+.sidebar-wrapper ul li.side-active a{
+  color: #FDA83D;
+  border-color: #FDA83D;
+}
+.sidebar-wrapper ul li a:hover{
+  border-color: cyan;
+}
+.sidebar-wrapper ul ul{
+  position: static;
+  display: none;
+}
+.sidebar-wrapper ul .feat-show.show{
+  display: block;
+}
+.sidebar-wrapper ul .serv-show.show1{
+  display: block;
+}
+.sidebar-wrapper ul ul li{
+  line-height: 42px;
+  border-top: none;
+}
+.sidebar-wrapper ul ul li a{
+  font-size: 17px;
+  color: #e6e6e6;
+}
+.sidebar-wrapper ul li.side-active ul li a{
+  color: #e6e6e6;
+}
+.sidebar-wrapper ul ul li a:hover{
+  color: cyan!important;
+}
+.sidebar-wrapper ul li a span{
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+  font-size: 22px;
+  transition: transform 0.4s;
+}
+.sidebar-wrapper ul li a span.rotate{
+  transform: translateY(-50%) rotate(-180deg);
+}
+
+/* Styles for dropdown */
+.dropdown-wrapper{
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+}
+.dropdown {
+    min-width: 15em;
+    position: relative;
+}
+.dropdown * {
+    box-sizing: border-box;
+}
+.select {
+    background: #27273c;
+    color: #fdc073;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 2px #27273c solid;
+    border-radius: 0.5em;
+    padding: 1em;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+.select-clicked {
+    border: 2px #27273c solid;
+    box-shadow: 0 0 0.8em #27273c;
+}
+.select:hover {
+    background: #27273c;
+}
+.caret {
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 6px solid #fff;
+    transition: 0.3s;
+}
+.caret-rotate {
+    transform: rotate(180deg);
+}
+.menu {
+    list-style: none;
+    padding: 0.2em 0.5em;
+    background: #dddddd;
+    border: 1px #27273c solid;
+    box-shadow: 0 0.5em 1em rgba(0, 0, 0, 0.2);
+    border-radius: 0.5em;
+    color: #27273c;
+    position: absolute;
+    top: 3em;
+    left: 50%;
+    width: 100%;
+    transform: translateX(-50%);
+    opacity: 0;
+    height: 0;
+    overflow: hidden;
+    transition: 0.3s ease-out;
+    z-index: 1;
+
+}
+.menu-open {
+    opacity: 1;
+    height: auto;
+}
+.menu li {
+    padding: 0.7em 0.5em;
+    margin: 0.3em 0;
+    border-radius: 0.5em;
+    cursor: pointer;
+}
+.menu li:hover {
+    background: #aaaaaa;
+}
+.active {
+    background: #FDA83D;
+}
+.menu-open {
+    opacity: 1;
+    height: auto;
+}

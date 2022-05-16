@@ -1,0 +1,186 @@
+{% extends "layout.html" %}
+{% block title %}WEB lab 7{% endblock %}
+{% block head %}
+{{ super() }}
+<link rel="stylesheet" type="text/css" href="../static/css/sidebar.css">
+<style>
+.main {
+    height: 75%;
+    width: auto;
+    margin: 10px auto;
+    padding: 25px 25px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    display: grid;
+    grid-template-areas: "s g d"
+                         "s g i";
+    grid-gap: 1vw;
+}
+#img_main {
+    max-width: 500px;
+    max-height: 500px;
+    width: auto;
+    height: auto;
+    border: 5px solid transparent;
+    border-radius: 0.5em;
+    padding: 10px;
+}
+
+.img-gallery {
+    margin: 10px;
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    justify-content: center;
+
+}
+.image > img {
+    max-width: 250px;
+    border: 10px solid #fff;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, .4);
+    overflow: hidden;
+    cursor: pointer;
+    background: white;
+}
+.image {
+    transition: 0.2s ease;
+}
+.image:hover {
+    transform: scale(1.1);
+}
+.popup-image {
+    position: fixed;
+    top: 0; left: 0;
+    background: rgba(0, 0, 0, .9);
+    height: 100%;
+    width: 100%;
+    z-index: 5;
+    display: none;
+}
+.popup-image span {
+    position: absolute;
+    top: 0; right: 10px;
+    font-size: 60px;
+    font-weight: bolder;
+    color: #fff;
+    cursor: pointer;
+}
+.popup-image img {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    border: 5px solid #fff;
+    border-radius: 5px;
+    width: 80%;
+    height: auto;
+    object-fit: cover;
+    background: white;
+}
+</style>
+{% endblock %}
+
+{% block header %}
+<ul class="main-menu">
+  <li><a href="http://127.0.0.1:5000/labs/part-six"><i class="gg-arrow-left-r"></i></a></li>
+  <li><a href="/">На главную</a></li>
+  <li><a href="http://127.0.0.1:5000/labs/part-six"><i class="gg-arrow-right-r"></i></a></li>
+</ul>
+{% endblock %}
+
+{% block content %}
+<div class = "main">
+    <div class="sidebar-wrapper" style = "grid-area: s">
+      <div class="text">Side Menu</div>
+      <ul>
+        <li class="side-active"><a href="#">Dashboard</a></li>
+        <li>
+          <a href="#" class="feat-btn">Features
+            <span class="fas fa-caret-down first"></span>
+          </a>
+          <ul class="feat-show">
+            <li><a href="#" onclick="alert('Вы тыкнули кнопку Pages')" >Pages</a></li>
+            <li><a href="#" onclick="alert('Вы тыкнули кнопку Elements')">Elements</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="#" class="serv-btn">Services
+            <span class="fas fa-caret-down second"></span>
+          </a>
+          <ul class="serv-show">
+            <li><a href="#" onclick="alert('Вы тыкнули кнопку App Design')">App Design</a></li>
+            <li><a href="#" onclick="alert('Вы тыкнули кнопку Web Design')">Web Design</a></li>
+          </ul>
+        </li>
+        <li><a href="#">Portfolio</a></li>
+        <li><a href="#">Overview</a></li>
+        <li><a href="#">Shortcuts</a></li>
+        <li><a href="#">Feedback</a></li>
+      </ul>
+    </div>
+
+    <div class="dropdown-wrapper" style = "grid-area: d">
+        <div class = "dropdown">
+            <div class="select">
+                <span class = "selected source">CSS3</span>
+                <div class="caret"></div>
+            </div>
+            <ul class="menu">
+                <li>HTML5</li>
+                <li>JS</li>
+                <li class="active">CSS3</li>
+                <li>IE</li>
+            </ul>
+        </div>
+        <div class = "dropdown">
+            <div class="select">
+                <span class = "selected border">white</span>
+                <div class="caret"></div>
+            </div>
+            <ul class="menu">
+                <li class="active">white</li>
+                <li>red</li>
+                <li>orange</li>
+                <li>purple</li>
+                <li >black</li>
+            </ul>
+        </div>
+        <div class = "dropdown">
+            <div class="select">
+                <span>Лабораторные</span>
+                <div class="caret"></div>
+            </div>
+            <ul class="menu">
+                <li><a href="http://127.0.0.1:5000/metro">Карта метро</a></li>
+                <li><a href="http://127.0.0.1:5000/tree">Бинарное дерево</a></li>
+                <li><a href="http://127.0.0.1:5000/labs/part-four">Форма регистрации</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class = "img-gallery" style="grid-area: g">
+        <div class = "image"><img src = "../static/img/wallpapers/wall-1.jpg" alt=""></div>
+        <div class = "image"><img src = "../static/img/wallpapers/wall-2.jpg" alt=""></div>
+        <div class = "image"><img src = "../static/img/wallpapers/wall-3.jpg" alt=""></div>
+        <div class = "image"><img src = "../static/img/wallpapers/wall-4.jpg" alt=""></div>
+        <div class = "image"><img src = "../static/img/wallpapers/wall-5.jpg" alt=""></div>
+        <div class = "image"><img src = "../static/img/wallpapers/wall-6.jpg" alt=""></div>
+        <div class = "image"><img src = "../static/img/wallpapers/wall-7.jpg" alt=""></div>
+        <div class = "image"><img src = "../static/img/wallpapers/wall-8.jpg" alt=""></div>
+    </div>
+    <div class="img-main">
+        <img src="../static/img/CSS3.png" alt="" id = "img_main" style="grid-area: i">
+    </div>
+    <div class = "popup-image">
+        <span>&times;</span>
+        <img src = "../static/img/CSS3.png" alt="">
+    </div>
+</div>
+<script type="text/javascript" src = "../static/js/menu.js"></script>
+{% endblock %}
+
+{% block footer %}
+    <ul class="main-menu">
+        <li>Подвал</li>
+    </ul>
+{% endblock %}

@@ -63,6 +63,11 @@ def show_page_6():
     return render_template('lab6_grid.html')
 
 
+@app.route('/labs/part-seven')
+def show_page_7():
+    return render_template('lab7_js.html')
+
+
 if __name__ == '__main__':
     os.environ["FLASK_ENV"] = "dev"
     # Setting up database

@@ -5,7 +5,6 @@ html, body {
     min-height: 100%;
     background-image: linear-gradient(to top, #fdc073 60px, #27273c 90%);
 }
-
 a {
 	color: #0059b2;
 	text-decoration: none;
@@ -49,7 +48,7 @@ ul.main-menu {
     margin: 0;
     padding: 0;
     color: #fdc073;
-    font-size: 20px;
+    font-size: 16px;
     overflow: hidden;
 
 }
