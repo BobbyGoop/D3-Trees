@@ -1,21 +1,24 @@
 html, body {
-	margin: 0;
-	padding: 0;
+    margin: 0;
+    padding: 0;
     width: 100%;
     min-height: 100%;
     background-image: linear-gradient(to top, #fdc073 60px, #27273c 90%);
 }
+
 a {
-	color: #0059b2;
-	text-decoration: none;
+    color: #0059b2;
+    text-decoration: none;
 }
 
 a:hover {
-	color: #CC0000;
-	text-decoration: underline;
+    color: #CC0000;
+    text-decoration: underline;
 }
 
-.clear {clear: both;}
+.clear {
+    clear: both;
+}
 
 #main-header {
     width: 100%;
@@ -52,17 +55,19 @@ ul.main-menu {
     overflow: hidden;
 
 }
+
 ul.main-menu li {
-	float: left;
-	margin: 18px 40px 0 50px;
+    float: left;
+    margin: 18px 40px 0 50px;
 }
 
 ul.main-menu li a {
-	color: #fdc073;
-	text-decoration: none;
+    color: #fdc073;
+    text-decoration: none;
 }
+
 ul.main-menu li a:hover {
-	color: #FDA83D;
+    color: #FDA83D;
 }
 
 

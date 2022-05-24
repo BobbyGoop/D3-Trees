@@ -1,0 +1,252 @@
+{% extends "layout.html" %}
+{% block title %}WEB lab 9{% endblock %}
+{% block head %}
+    {{ super() }}
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="../static/js/queries.js"></script>
+    <style>
+        #main-footer {
+            background: transparent;
+        }
+
+        .main {
+            background: white;
+            width: 60%;
+            height: auto;
+            margin: 10px auto;
+            border-radius: 12px;
+            border: none;
+        }
+
+        .btn-base {
+            width: 20%;
+            height: 40px;
+            margin: 10px auto;
+            align-items: center;
+            background-clip: padding-box;
+            background-color: #fdc073;
+            border: 1px solid transparent;
+            border-radius: 10px;
+            box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
+            box-sizing: border-box;
+            color: #27273c;
+            cursor: pointer;
+            display: inline-flex;
+            justify-content: center;
+            line-height: 1.25;
+            min-height: 3rem;
+            transition: all 250ms;
+        }
+
+        .btn-base:hover {
+            background-color: #27273c;
+            color: white;
+            box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
+        }
+
+        .btn-base:hover {
+            transform: translateY(-5px);
+        }
+
+        .btn-base:active {
+            box-shadow: rgba(0, 0, 0, .06) 0 2px 4px;
+            transform: translateY(0);
+        }
+
+        /* Slideshow container */
+        .slideshow-container {
+            position: relative;
+            margin: auto;
+        }
+
+        .slideshow-wrapper {
+            position: relative;
+            max-width: 1450px;
+            margin: 10px 20px;
+            border-radius: 10px;
+        }
+
+        /* Hide the images by default */
+        .slide {
+            display: none;
+        }
+
+        .slide.active {
+            display: block;
+        }
+
+        img {
+            width: 100%;
+        }
+
+        /* Next & previous buttons */
+        .prev, .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            width: auto;
+            margin-top: -22px;
+            padding: 16px;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            transition: 0.6s ease;
+            border-radius: 0 3px 3px 0;
+            user-select: none;
+            z-index: 10;
+        }
+
+        /* Position the "next button" to the right */
+        .next {
+            right: 0;
+            border-radius: 3px 0 0 3px;
+        }
+
+        .prev {
+            left: 0;
+            border-radius: 3px 0 0 3px;
+        }
+
+        /* On hover, add a black background color with a little bit see-through */
+        .prev:hover, .next:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        .text {
+            color: #f2f2f2;
+            font-size: 15px;
+            padding: 8px 12px;
+            position: absolute;
+            bottom: 5px;
+            width: 100%;
+            text-align: center;
+            box-sizing: border-box;
+            background-color: rgba(0, 0, 0, 0.62);
+        }
+
+        .table-wrapper {
+            border: 10px #CC0000;
+            margin: 20px;
+        }
+
+        .table-main {
+            margin: 25px auto;
+            width: 100%;
+            border: 1px white;
+            border-collapse: collapse;
+            text-align: center
+        }
+    </style>
+{% endblock %}
+
+{% block header %}
+    <ul class="main-menu">
+        <li><a href="http://127.0.0.1:5000/labs/part-eight"><i class="gg-arrow-left-r"></i></a></li>
+        <li><a href="/">На главную</a></li>
+        <li><a href="http://127.0.0.1:5000/labs/part-one"><i class="gg-arrow-right-r"></i></a></li>
+    </ul>
+{% endblock %}
+
+{% block content %}
+    <div class="main">
+        <button class="btn-base" id="btn-font">Изменить шрифт</button>
+        <div class="slideshow-wrapper" id="slideshow">
+            <div class="slideshow-container">
+                <div class="slide active">
+                    <img src="../static/img/wallpapers/wall-1.jpg" alt="">
+                    <div class="text">Классные пирамиды</div>
+                </div>
+                <div class="slide">
+                    <img src="../static/img/wallpapers/wall-2.jpg" alt="">
+                    <div class="text">Классные Retro-пирамиды</div>
+                </div>
+                <div class="slide">
+                    <img src="../static/img/wallpapers/wall-3.jpg" alt="">
+                    <div class="text">Футуризм</div>
+                </div>
+                <div class="slide">
+                    <img src="../static/img/wallpapers/wall-4.jpg" alt="">
+                    <div class="text">Обои с MacBook</div>
+                </div>
+                <div class="slide">
+                    <img src="../static/img/wallpapers/wall-5.jpg" alt="">
+                    <div class="text">Машинка из NFS</div>
+                </div>
+            </div>
+            <a class="prev">&#10094;</a>
+            <a class="next">&#10095;</a>
+        </div>
+        <div class="table-wrapper">
+            <table class="table-main">
+                <tr style="font-size: large; color: #FDA83D ; background: #27273c; white-space: break-spaces">
+                    <td>Модель</td>
+                    <td>Замена корпуса</td>
+                    <td>Замена дисплея</td>
+                    <td>Замена сенсора</td>
+                    <td>Замена аккумулятора</td>
+                </tr>
+                <tr>
+                    <td>Iphone 4</td>
+                    <td>2000</td>
+                    <td>1800</td>
+                    <td>2500</td>
+                    <td>1200</td>
+                </tr>
+                <tr>
+                    <td>Iphone 4s</td>
+                    <td>2000</td>
+                    <td>1800</td>
+                    <td>2500</td>
+                    <td>1200</td>
+                </tr>
+                <tr>
+                    <td>Iphone 5</td>
+                    <td>2500</td>
+                    <td>1900</td>
+                    <td>3000</td>
+                    <td>1450</td>
+                </tr>
+                <tr>
+                    <td>Iphone 5s</td>
+                    <td>2500</td>
+                    <td>1900</td>
+                    <td>3000</td>
+                    <td>1450</td>
+                </tr>
+                <tr>
+                    <td>Iphone 5c</td>
+                    <td>2500</td>
+                    <td>1900</td>
+                    <td>3000</td>
+                    <td>1450</td>
+                </tr>
+                <tr>
+                    <td>Iphone 6</td>
+                    <td>3500</td>
+                    <td>3000</td>
+                    <td>4500</td>
+                    <td>1900</td>
+                </tr>
+                <tr>
+                    <td>Iphone 6 Plus</td>
+                    <td>4500</td>
+                    <td>3500</td>
+                    <td>5000</td>
+                    <td>2000</td>
+                </tr>
+                <tr>
+                    <td>Iphone 6s</td>
+                    <td>4000</td>
+                    <td>4000</td>
+                    <td>5500</td>
+                    <td>2200</td>
+                </tr>
+            </table>
+            <div class="table-buttons" style="display: flex; column-gap: 10px;">
+                <button class="btn-base change-trs">Изменить цвет нечетных строк таблицы</button>
+                <button class="btn-base recover-trs">Вернуть обратно</button>
+            </div>
+        </div>
+    </div>
+{% endblock %}

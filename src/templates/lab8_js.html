@@ -1,0 +1,69 @@
+{% extends "layout.html" %}
+{% block title %}WEB lab 7{% endblock %}
+{% block head %}
+    {{ super() }}
+    <script defer src="../static/js/overlay.js"></script>
+    <link rel="stylesheet" type="text/css" href="../static/css/slideshow.css">
+{% endblock %}
+
+{% block header %}
+    <ul class="main-menu">
+        <li><a href="http://127.0.0.1:5000/labs/part-seven"><i class="gg-arrow-left-r"></i></a></li>
+        <li><a href="/">На главную</a></li>
+        <li><a href="http://127.0.0.1:5000/labs/part-nine"><i class="gg-arrow-right-r"></i></a></li>
+    </ul>
+{% endblock %}
+
+{% block content %}
+    <div class="modal" id="modal">
+        <div class="modal-header">
+            <div class="title">Реклама, которая не бесит!</div>
+            <button data-close-button class="close-button">&times;</button>
+        </div>
+        <div class="modal-body">
+        </div>
+        <div class="modal-footer">
+            <button data-close-button class="modal-button" id="confirm">Да!</button>
+            <button data-close-button class="modal-button">Не хочу :(</button>
+        </div>
+    </div>
+    <div class="slideshow-wrapper" id="slideshow">
+        <div class="slideshow-container">
+            <div class="mySlides fade">
+                <a href="#"><img class="slide-image" src="../static/img/wallpapers/wall-1.jpg" style="width:100%" alt=""></a>
+                <div class="text">Классные пирамиды</div>
+            </div>
+
+            <div class="mySlides fade">
+                <a href="#"><img class="slide-image" src="../static/img/wallpapers/wall-2.jpg" style="width:100%" alt=""></a>
+                <div class="text">Классные Retro-пирамиды</div>
+            </div>
+
+            <div class="mySlides fade">
+                <a href="#"><img class="slide-image" src="../static/img/wallpapers/wall-3.jpg" style="width:100%" alt=""></a>
+                <div class="text">Футуризм</div>
+            </div>
+
+            <div class="mySlides fade">
+                <a href="#"><img class="slide-image" src="../static/img/wallpapers/wall-4.jpg" style="width:100%" alt=""></a>
+                <div class="text">Обои с MacBook</div>
+            </div>
+
+            <div class="mySlides fade">
+                <a href="#"><img class="slide-image" src="../static/img/wallpapers/wall-5.jpg" style="width:100%" alt=""></a>
+                <div class="text">Машинка из NFS</div>
+            </div>
+            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+            <a class="next" onclick="plusSlides(1)">&#10095;</a>
+        </div>
+        <br>
+        <div style="text-align:center">
+            <span class="dot" onclick="currentSlide(1)"></span>
+            <span class="dot" onclick="currentSlide(2)"></span>
+            <span class="dot" onclick="currentSlide(3)"></span>
+            <span class="dot" onclick="currentSlide(4)"></span>
+            <span class="dot" onclick="currentSlide(5)"></span>
+        </div>
+    </div>
+    <div id="overlay"></div>
+{% endblock %}

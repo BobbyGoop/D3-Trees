@@ -4,15 +4,17 @@
     margin: 10px auto;
     background-color: white;
     border-radius: 10px;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     display: flex;
     flex-direction: column;
     padding: 10px;
 }
+
 img {
     float: left;
     max-width: 200px;
 }
+
 .content-header {
     margin: 2px 0;
     background: #aaaaaa;
@@ -21,6 +23,7 @@ img {
     justify-content: space-around;
     height: 15%;
 }
+
 .content-main {
     background: #aaaaaa;
     margin: 2px 0;
@@ -28,12 +31,14 @@ img {
     flex-direction: row;
     align-items: stretch;
 }
+
 .content-footer {
     background: #aaaaaa;
     margin: 2px 0;
     display: flex;
     flex-direction: row;
 }
+
 .content-header > div {
     border: solid 2px grey;
     width: 200px;
@@ -41,6 +46,7 @@ img {
     background: #fdc073;
     margin: 10px;
 }
+
 .content-main > div {
     border: solid 2px grey;
     text-align: left;
@@ -48,22 +54,27 @@ img {
     margin: 10px;
     padding: 10px;
 }
+
 .cm-element1, .cm-element3 {
     width: 25%;
 }
+
 .cm-element2 {
     width: 50%;
 }
+
 .content-footer > div {
     border: solid 2px grey;
     height: 60px;
     flex-grow: 1;
     background: #fdc073;
 }
-.content-footer > div:nth-of-type(1){
+
+.content-footer > div:nth-of-type(1) {
     margin: 10px 0 10px 10px
 }
-.content-footer > div:nth-of-type(2){
+
+.content-footer > div:nth-of-type(2) {
     margin: 10px 10px 10px 0
 }
 
@@ -71,13 +82,16 @@ img {
     .content-header {
         flex-direction: column;
     }
+
     .content-main {
         flex-direction: column;
     }
+
     .content-header > div, .content-main > div {
         width: auto;
         max-width: 100%;
     }
+
     img {
         float: left;
         max-width: 100px;

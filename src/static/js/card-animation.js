@@ -1,53 +1,52 @@
 async function submitForm(e, form) {
-  e.preventDefault();
-  const btnSubmit = document.getElementById('btnSubmit');
+    e.preventDefault();
+    const btnSubmit = document.getElementById('btnSubmit');
 
-  btnSubmit.disabled = true;
-  setTimeout(() => btnSubmit.disabled = false, 2000);
+    btnSubmit.disabled = true;
+    setTimeout(() => btnSubmit.disabled = false, 2000);
 
-  const jsonFormData = buildJsonFormData(form);
-  console.log(jsonFormData)
+    const jsonFormData = buildJsonFormData(form);
+    console.log(jsonFormData)
 
-  const headers = { "Content-Type": "application/json" }
+    const headers = {"Content-Type": "application/json"}
 
-  const response = await performPostHttpRequest(`/api/clients/`, headers, jsonFormData);
-  console.log(response);
+    const response = await performPostHttpRequest(`/api/clients/`, headers, jsonFormData);
+    console.log(response);
 
-  if (response) window.location.reload(true);
-  else alert(`Произошла ошибка сервера. Пожалуйста, повторите попытку позже.`);
+    if (response) window.location.reload(true);
+    else alert(`Произошла ошибка сервера. Пожалуйста, повторите попытку позже.`);
 }
 
 function buildJsonFormData(form) {
-  const jsonFormData = {};
-  for (const pair of new FormData(form)) {
-    console.log(pair)
-    jsonFormData[pair[0]] = pair[1];
-  }
-  return jsonFormData;
+    const jsonFormData = {};
+    for (const pair of new FormData(form)) {
+        console.log(pair)
+        jsonFormData[pair[0]] = pair[1];
+    }
+    return jsonFormData;
 }
 
 async function performPostHttpRequest(fetchLink, headers, body) {
-  if (!fetchLink || !headers || !body) {
-    throw new Error("One or more POST request parameters was not passed.");
-  }
-  try {
-    const rawResponse = await fetch(fetchLink, {
-      method: "POST",
-      headers: headers,
-      body: JSON.stringify(body)
-    });
-    return rawResponse.status;
-  }
-  catch (err) {
-    console.error(`Error at fetch POST: ${err}`);
-    throw err;
-  }
+    if (!fetchLink || !headers || !body) {
+        throw new Error("One or more POST request parameters was not passed.");
+    }
+    try {
+        const rawResponse = await fetch(fetchLink, {
+            method: "POST",
+            headers: headers,
+            body: JSON.stringify(body)
+        });
+        return rawResponse.status;
+    } catch (err) {
+        console.error(`Error at fetch POST: ${err}`);
+        throw err;
+    }
 }
 
 Date.prototype.toDateInputValue = (function () {
-  let local = new Date(this);
-  local.setMinutes(this.getMinutes() - this.getTimezoneOffset());
-  return local.toJSON().slice(0, 10);
+    let local = new Date(this);
+    local.setMinutes(this.getMinutes() - this.getTimezoneOffset());
+    return local.toJSON().slice(0, 10);
 });
 
 // Set data on date picker
@@ -59,7 +58,7 @@ const sampleForm = document.querySelector("#sampleForm");
 
 // send JSON data
 sampleForm.addEventListener("submit", function (e) {
-  submitForm(e, this);
+    submitForm(e, this);
 });
 
 // //Moving Animation Event

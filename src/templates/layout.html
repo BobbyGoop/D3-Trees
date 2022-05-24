@@ -3,24 +3,25 @@
 
 <head>
     {% block head %}
-    <title>{% block title %}{% endblock %}</title>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <link rel="stylesheet" type="text/css" href="../static/css/styles.css">
-    <link rel="icon" type="image/x-icon" href="../static/img/favicon.ico">
-    <link href='https://css.gg/arrow-right-r.css' rel='stylesheet'>
-    <link href='https://css.gg/arrow-left-r.css' rel='stylesheet'>
+        <title>{% block title %}{% endblock %}</title>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <link rel="stylesheet" type="text/css" href="../static/css/styles.css">
+        <link rel="icon" type="image/x-icon" href="../static/img/favicon.ico">
+        <link href='https://css.gg/arrow-right-r.css' rel='stylesheet'>
+        <link href='https://css.gg/arrow-left-r.css' rel='stylesheet'>
     {% endblock %}
 
 <body>
 <header id="main-header">
-   {% block header %}{% endblock %}
+    {% block header %}{% endblock %}
 </header>
 <div class="content">
     {% block content %}{% endblock %}
 </div>
-<footer id = "main-footer">
-{% block footer %} {% endblock %}
+<footer id="main-footer">
+    {% block footer %} {% endblock %}
 </footer>
 </body>
+
 </html>

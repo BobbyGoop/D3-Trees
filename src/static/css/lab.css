@@ -7,6 +7,7 @@ h1 {
     text-align: center;
     margin-top: 2rem;
 }
+
 h2 {
     font-family: "Times New Roman", serif;
     font-style: italic;
@@ -16,7 +17,7 @@ h2 {
 }
 
 ol {
-    list-style-type:decimal-leading-zero;
+    list-style-type: decimal-leading-zero;
 }
 
 ul {

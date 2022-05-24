@@ -11,6 +11,7 @@ class Node {
         return JSON.stringify(this);
     }
 }
+
 var windowSizes = [240, 480, 960, 1920]
 
 var width = 1000, possibleNodes, height = 1000

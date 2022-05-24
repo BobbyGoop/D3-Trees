@@ -47,7 +47,9 @@ function dijkstra(graph, start, target) {
 
 function parallel(arrays) {
     return arrays[0].map(function (_, i) {
-        return arrays.map(function (array) { return array[i] })
+        return arrays.map(function (array) {
+            return array[i]
+        })
     });
 }
 
@@ -64,8 +66,7 @@ function convertToGraph(data) {
             if (data.links[n].source == current.id) {
                 edges[names[data.links[n].target - 1]] = data.links[n].value;
 
-            }
-            else if (data.links[n].target == current.id) {
+            } else if (data.links[n].target == current.id) {
                 edges[names[data.links[n].source - 1]] = data.links[n].value;
             }
         }

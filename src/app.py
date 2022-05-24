@@ -68,6 +68,16 @@ def show_page_7():
     return render_template('lab7_js.html')
 
 
+@app.route('/labs/part-eight')
+def show_page_8():
+    return render_template('lab8_js.html')
+
+
+@app.route('/labs/part-nine')
+def show_page_9():
+    return render_template('lab9_jQuery.html')
+
+
 if __name__ == '__main__':
     os.environ["FLASK_ENV"] = "dev"
     # Setting up database

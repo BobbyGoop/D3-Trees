@@ -1,9 +1,9 @@
 {% extends "layout.html" %}
 {% block title %}Web Lab 3{% endblock %}
 {% block head %}
-{{ super() }}
-<style>
-    .main {
+    {{ super() }}
+    <style>
+        .main {
             margin: 25px auto;
             width: 44%;
             height: 60%;
@@ -11,9 +11,10 @@
             flex-direction: column;
             background-color: white;
             border-radius: 30px;
-            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-    }
-    .other {
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        }
+
+        .other {
             margin: 25px auto;
             width: 90%;
             height: 60%;
@@ -21,89 +22,99 @@
             flex-direction: row;
             background-color: white;
             border-radius: 30px;
-    }
-     .table-wrapper {
+        }
+
+        .table-wrapper {
             border: 10px #CC0000;
             margin: 20px;
-     }
-     .lower-header {
+        }
+
+        .lower-header {
             width: 100%;
             text-align: center;
             height: 60px;
             background: #27273c;
-     }
-     .table-main {
+        }
 
-         text-align: center;
-         word-wrap: break-word;
-         border-collapse: collapse;
-         outline: 6px double blue; /* Рамка вокруг таблицы */
-         column-count: 3;
-         column-width: auto;
+        .table-main {
 
-     }
-     .table-striped {
-         margin: 25px;
-         width: 100%;
-         border: 1px white;
-         border-collapse: collapse;
-         text-align: center
-     }
-     .other tr:nth-of-type(even) {background-color: #dddddd}
-     .other tr:nth-of-type(odd) {background-color: #aaaaaa}
-     td {
+            text-align: center;
+            word-wrap: break-word;
+            border-collapse: collapse;
+            outline: 6px double blue; /* Рамка вокруг таблицы */
+            column-count: 3;
+            column-width: auto;
+
+        }
+
+        .table-striped {
+        }
+
+        .other tr:nth-of-type(even) {
+            background-color: #dddddd
+        }
+
+        .other tr:nth-of-type(odd) {
+            background-color: #aaaaaa
+        }
+
+        td {
             height: 1px;
             width: 33%;
             padding: 10px;
             border: 1px solid black;
-     }
-     img {
-         height: 100%;
-         width: 100%;
-         object-fit: contain;
-         padding-left: 10px;
-     }
-     .text-wrapper {
-         outline: inset 1px;
-         width: 83.4%;
-         height: auto;
-         float: right;
-         padding-top: 10px;
-         background: white;
-     }
-     .img-wrapper {
-         width: 16.6%;
-         height: 100%;
-         float: left;
-     }
+        }
 
-     .budget {
-        background: green;
-     }
+        img {
+            height: 100%;
+            width: 100%;
+            object-fit: contain;
+            padding-left: 10px;
+        }
 
-     .off-budget {
-         background: lightblue;
-     }
-     .table-header {
-         font-size: larger;
-         font-weight: bolder;
-     }
-</style>
+        .text-wrapper {
+            outline: inset 1px;
+            width: 83.4%;
+            height: auto;
+            float: right;
+            padding-top: 10px;
+            background: white;
+        }
+
+        .img-wrapper {
+            width: 16.6%;
+            height: 100%;
+            float: left;
+        }
+
+        .budget {
+            background: green;
+        }
+
+        .off-budget {
+            background: lightblue;
+        }
+
+        .table-header {
+            font-size: larger;
+            font-weight: bolder;
+        }
+    </style>
 {% endblock %}
 
 {% block header %}
-<ul class="main-menu">
-  <li><a href="http://127.0.0.1:5000/labs/part-two"><i class="gg-arrow-left-r"></i></a></li>
-  <li><a href="/">На главную</a></li>
-  <li><a href="http://127.0.0.1:5000/labs/part-four"><i class="gg-arrow-right-r"></i></a></li>
-</ul>
+    <ul class="main-menu">
+        <li><a href="http://127.0.0.1:5000/labs/part-two"><i class="gg-arrow-left-r"></i></a></li>
+        <li><a href="/">На главную</a></li>
+        <li><a href="http://127.0.0.1:5000/labs/part-four"><i class="gg-arrow-right-r"></i></a></li>
+    </ul>
 {% endblock %}
 
 {% block content %}
-<div class = "main">
-    <div class = "table-wrapper">
-        <table class = "table-main">
-            <tbody>
+    <div class="main">
+        <div class="table-wrapper">
+            <table class="table-main">
+                <tbody>
                 <tr>
                     <td class="table-header" colspan="3">Зачисление в магистратуру ГУАП</td>
                 </tr>
@@ -122,12 +133,12 @@
                     <td class="off-budget" style="text-align: left">Заочная форма обучения</td>
                 </tr>
                 <tr>
-                    <td style="padding: 0; " colspan="3" >
+                    <td style="padding: 0; " colspan="3">
                         <div style="display: flex; flex-direction: row">
-                            <div class = "img-wrapper">
+                            <div class="img-wrapper">
                                 <img alt="Бла бла бла" src="../static/img/logo.png">
                             </div>
-                            <div class = "text-wrapper">
+                            <div class="text-wrapper">
                                 <b><i>Программы вступительных испытаний</i></b><br>
                                 <span style="display: block;text-align: left; padding: 10px">
                                     Со всеми программами вступительных
@@ -137,213 +148,213 @@
                         </div>
                     </td>
                 </tr>
-            </tbody>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="other">
+        <table class="table-striped">
+            <tr style="font-size: large; color: #FDA83D ; background: #27273c; white-space: break-spaces">
+                <td>Модель</td>
+                <td>Замена корпуса</td>
+                <td>Замена дисплея</td>
+                <td>Замена сенсора</td>
+                <td>Замена аккумулятора</td>
+                <td>Замена микрофона</td>
+                <td>Замена динамика</td>
+                <td>Замена зарядки</td>
+                <td>Ремонт Wi-Fi</td>
+                <td>Снятие пароля</td>
+            </tr>
+            <tr>
+                <td>Iphone 4</td>
+                <td>2000</td>
+                <td>1800</td>
+                <td>2500</td>
+                <td>1200</td>
+                <td>1100</td>
+                <td>1000</td>
+                <td>1400</td>
+                <td>3500</td>
+                <td>600</td>
+            </tr>
+            <tr>
+                <td>Iphone 4s</td>
+                <td>2000</td>
+                <td>1800</td>
+                <td>2500</td>
+                <td>1200</td>
+                <td>1100</td>
+                <td>1000</td>
+                <td>1400</td>
+                <td>3500</td>
+                <td>600</td>
+            </tr>
+            <tr>
+                <td>Iphone 5</td>
+                <td>2500</td>
+                <td>1900</td>
+                <td>3000</td>
+                <td>1450</td>
+                <td>1500</td>
+                <td>1300</td>
+                <td>2400</td>
+                <td>4500</td>
+                <td>600</td>
+            </tr>
+            <tr>
+                <td>Iphone 5s</td>
+                <td>2500</td>
+                <td>1900</td>
+                <td>3000</td>
+                <td>1450</td>
+                <td>1500</td>
+                <td>1300</td>
+                <td>2400</td>
+                <td>4500</td>
+                <td>600</td>
+            </tr>
+            <tr>
+                <td>Iphone 5c</td>
+                <td>2500</td>
+                <td>1900</td>
+                <td>3000</td>
+                <td>1450</td>
+                <td>1500</td>
+                <td>1300</td>
+                <td>2400</td>
+                <td>4500</td>
+                <td>600</td>
+            </tr>
+            <tr>
+                <td>Iphone 6</td>
+                <td>3500</td>
+                <td>3000</td>
+                <td>4500</td>
+                <td>1900</td>
+                <td>2000</td>
+                <td>1500</td>
+                <td>3000</td>
+                <td>5500</td>
+                <td>600</td>
+            </tr>
+            <tr>
+                <td>Iphone 6 Plus</td>
+                <td>4500</td>
+                <td>3500</td>
+                <td>5000</td>
+                <td>2000</td>
+                <td>2000</td>
+                <td>1700</td>
+                <td>3000</td>
+                <td>5500</td>
+                <td>600</td>
+            </tr>
+            <tr>
+                <td>Iphone 6s</td>
+                <td>4000</td>
+                <td>4000</td>
+                <td>5500</td>
+                <td>2200</td>
+                <td>2500</td>
+                <td>2000</td>
+                <td>3500</td>
+                <td>4500</td>
+                <td>600</td>
+            </tr>
+            <tr>
+                <td>Iphone 6s Plus</td>
+                <td>4500</td>
+                <td>4500</td>
+                <td>6500</td>
+                <td>2500</td>
+                <td>2500</td>
+                <td>2400</td>
+                <td>3500</td>
+                <td>4500</td>
+                <td>600</td>
+            </tr>
+            <tr>
+                <td>Iphone SE</td>
+                <td>4000</td>
+                <td>2700</td>
+                <td>5000</td>
+                <td>1900</td>
+                <td>2000</td>
+                <td>1600</td>
+                <td>2800</td>
+                <td>3500</td>
+                <td>600</td>
+            </tr>
+            <tr>
+                <td>Iphone 7</td>
+                <td>5500</td>
+                <td>5000</td>
+                <td>7500</td>
+                <td>2800</td>
+                <td>3000</td>
+                <td>2500</td>
+                <td>4500</td>
+                <td>6500</td>
+                <td>600</td>
+            </tr>
+            <tr>
+                <td>Iphone 7 Plus</td>
+                <td>6500</td>
+                <td>6000</td>
+                <td>8000</td>
+                <td>3000</td>
+                <td>3500</td>
+                <td>3000</td>
+                <td>4500</td>
+                <td>6500</td>
+                <td>600</td>
+            </tr>
+            <tr>
+                <td>Iphone 8</td>
+                <td>7000</td>
+                <td>7500</td>
+                <td>10000</td>
+                <td>3500</td>
+                <td>4000</td>
+                <td>3000</td>
+                <td>6000</td>
+                <td>6500</td>
+                <td>600</td>
+            </tr>
+            <tr>
+                <td>Iphone 8 Plus</td>
+                <td>8500</td>
+                <td>8000</td>
+                <td>11000</td>
+                <td>3500</td>
+                <td>4000</td>
+                <td>3500</td>
+                <td>6000</td>
+                <td>6500</td>
+                <td>600</td>
+            </tr>
+            <tr>
+                <td>Iphone X</td>
+                <td></td>
+                <td>25000</td>
+                <td>25000</td>
+                <td>5000</td>
+                <td>5500</td>
+                <td>5000</td>
+                <td></td>
+                <td>6500</td>
+                <td>600</td>
+            </tr>
+            <tbody>
         </table>
     </div>
-</div>
-<div class="other">
-    <table class="table-striped">
-        <tr style="font-size: large; color: #FDA83D ; background: #27273c; white-space: break-spaces">
-            <td>Модель</td>
-            <td>Замена корпуса</td>
-            <td>Замена дисплея</td>
-            <td>Замена сенсора</td>
-            <td>Замена аккумулятора</td>
-            <td>Замена микрофона</td>
-            <td>Замена динамика</td>
-            <td>Замена зарядки</td>
-            <td>Ремонт Wi-Fi</td>
-            <td>Снятие пароля</td>
-        </tr>
-        <tr>
-            <td>Iphone 4</td>
-            <td>2000</td>
-            <td>1800</td>
-            <td>2500</td>
-            <td>1200</td>
-            <td>1100</td>
-            <td>1000</td>
-            <td>1400</td>
-            <td>3500</td>
-            <td>600</td>
-        </tr>
-        <tr>
-            <td>Iphone 4s</td>
-            <td>2000</td>
-            <td>1800</td>
-            <td>2500</td>
-            <td>1200</td>
-            <td>1100</td>
-            <td>1000</td>
-            <td>1400</td>
-            <td>3500</td>
-            <td>600</td>
-        </tr>
-        <tr>
-            <td>Iphone 5</td>
-            <td>2500</td>
-            <td>1900</td>
-            <td>3000</td>
-            <td>1450</td>
-            <td>1500</td>
-            <td>1300</td>
-            <td>2400</td>
-            <td>4500</td>
-            <td>600</td>
-        </tr>
-        <tr>
-            <td>Iphone 5s</td>
-            <td>2500</td>
-            <td>1900</td>
-            <td>3000</td>
-            <td>1450</td>
-            <td>1500</td>
-            <td>1300</td>
-            <td>2400</td>
-            <td>4500</td>
-            <td>600</td>
-        </tr>
-        <tr>
-            <td>Iphone 5c</td>
-            <td>2500</td>
-            <td>1900</td>
-            <td>3000</td>
-            <td>1450</td>
-            <td>1500</td>
-            <td>1300</td>
-            <td>2400</td>
-            <td>4500</td>
-            <td>600</td>
-        </tr>
-        <tr>
-            <td>Iphone 6</td>
-            <td>3500</td>
-            <td>3000</td>
-            <td>4500</td>
-            <td>1900</td>
-            <td>2000</td>
-            <td>1500</td>
-            <td>3000</td>
-            <td>5500</td>
-            <td>600</td>
-        </tr>
-        <tr>
-            <td>Iphone 6 Plus</td>
-            <td>4500</td>
-            <td>3500</td>
-            <td>5000</td>
-            <td>2000</td>
-            <td>2000</td>
-            <td>1700</td>
-            <td>3000</td>
-            <td>5500</td>
-            <td>600</td>
-        </tr>
-        <tr>
-            <td>Iphone 6s</td>
-            <td>4000</td>
-            <td>4000</td>
-            <td>5500</td>
-            <td>2200</td>
-            <td>2500</td>
-            <td>2000</td>
-            <td>3500</td>
-            <td>4500</td>
-            <td>600</td>
-        </tr>
-        <tr>
-            <td>Iphone 6s Plus</td>
-            <td>4500</td>
-            <td>4500</td>
-            <td>6500</td>
-            <td>2500</td>
-            <td>2500</td>
-            <td>2400</td>
-            <td>3500</td>
-            <td>4500</td>
-            <td>600</td>
-        </tr>
-        <tr>
-            <td>Iphone SE</td>
-            <td>4000</td>
-            <td>2700</td>
-            <td>5000</td>
-            <td>1900</td>
-            <td>2000</td>
-            <td>1600</td>
-            <td>2800</td>
-            <td>3500</td>
-            <td>600</td>
-        </tr>
-        <tr>
-            <td>Iphone 7</td>
-            <td>5500</td>
-            <td>5000</td>
-            <td>7500</td>
-            <td>2800</td>
-            <td>3000</td>
-            <td>2500</td>
-            <td>4500</td>
-            <td>6500</td>
-            <td>600</td>
-        </tr>
-        <tr>
-            <td>Iphone 7 Plus</td>
-            <td>6500</td>
-            <td>6000</td>
-            <td>8000</td>
-            <td>3000</td>
-            <td>3500</td>
-            <td>3000</td>
-            <td>4500</td>
-            <td>6500</td>
-            <td>600</td>
-        </tr>
-        <tr>
-            <td>Iphone 8</td>
-            <td>7000</td>
-            <td>7500</td>
-            <td>10000</td>
-            <td>3500</td>
-            <td>4000</td>
-            <td>3000</td>
-            <td>6000</td>
-            <td>6500</td>
-            <td>600</td>
-        </tr>
-        <tr>
-            <td>Iphone 8 Plus</td>
-            <td>8500</td>
-            <td>8000</td>
-            <td>11000</td>
-            <td>3500</td>
-            <td>4000</td>
-            <td>3500</td>
-            <td>6000</td>
-            <td>6500</td>
-            <td>600</td>
-        </tr>
-        <tr>
-            <td>Iphone X</td>
-            <td></td>
-            <td>25000</td>
-            <td>25000</td>
-            <td>5000</td>
-            <td>5500</td>
-            <td>5000</td>
-            <td></td>
-            <td>6500</td>
-            <td>600</td>
-        </tr>
-    <tbody>
-    </table>
-</div>
 {% endblock %}
 
 {% block footer %}
-<div class = "footer">
-    <ul class="main-menu">
-        <li><a href="#start">В начало</a></li>
-    </ul>
-</div>
+    <div class="footer">
+        <ul class="main-menu">
+            <li><a href="#start">В начало</a></li>
+        </ul>
+    </div>
 {% endblock %}

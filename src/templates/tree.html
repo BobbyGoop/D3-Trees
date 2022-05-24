@@ -1,53 +1,55 @@
 {% extends "layout.html" %}
-{% block title %} {{title}} {% endblock %}
+{% block title %} {{ title }} {% endblock %}
 {% block style %}
 
 {% endblock %}
 {% block head %}
-{{ super() }}
-<style>
-    .container {
-        height: 800px;
-        width: 1000px;
-        margin: 0 auto;
-        background-color: white;
-        border-radius: 10px;
-        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-        padding: 10px;
-    }
-    #main-footer {
-        background: transparent;
-    }
-    circle {
-        fill: white;
-        stroke-width: 0.5px;
-        stroke: black;
-    }
+    {{ super() }}
+    <style>
+        .container {
+            height: 800px;
+            width: 1000px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            padding: 10px;
+        }
 
-    line {
-        stroke: black;
-        stroke-width: 1px;
-    }
+        #main-footer {
+            background: transparent;
+        }
 
-    svg {
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-        height: 800px;
-    }
-</style>
+        circle {
+            fill: white;
+            stroke-width: 0.5px;
+            stroke: black;
+        }
+
+        line {
+            stroke: black;
+            stroke-width: 1px;
+        }
+
+        svg {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            height: 800px;
+        }
+    </style>
 {% endblock %}
 
 {% block header %}
-<ul class="main-menu">
-  <li><a href="/">На главную</a></li>
-</ul>
+    <ul class="main-menu">
+        <li><a href="/">На главную</a></li>
+    </ul>
 {% endblock %}
 
 {% block content %}
-<div class="container">
-    <svg></svg>
-</div>
-<script src="https://d3js.org/d3.v6.min.js"></script>
-<script type="text/javascript" src="../static/js/binary.js"></script>
+    <div class="container">
+        <svg></svg>
+    </div>
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+    <script type="text/javascript" src="../static/js/binary.js"></script>
 {% endblock %}

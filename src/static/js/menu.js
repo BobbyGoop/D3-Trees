@@ -34,29 +34,29 @@ dropdowns.forEach(dropdown => {
 const popup = document.querySelector('.popup-image');
 document.querySelectorAll('.img-gallery img').forEach(image => {
     image.onclick = () => {
-      popup.style.display = 'block';
-      document.querySelector('.popup-image img').src = image.getAttribute('src');
+        popup.style.display = 'block';
+        document.querySelector('.popup-image img').src = image.getAttribute('src');
     };
 });
 
- document.querySelector('.popup-image span').onclick = () => {
-     popup.style.display = 'none';
- };
+document.querySelector('.popup-image span').onclick = () => {
+    popup.style.display = 'none';
+};
 
- document.querySelector('.feat-btn').onclick = () => {
-      document.querySelector('.sidebar-wrapper ul .feat-show').classList.toggle("show");
- };
+document.querySelector('.feat-btn').onclick = () => {
+    document.querySelector('.sidebar-wrapper ul .feat-show').classList.toggle("show");
+};
 
- document.querySelector('.serv-btn').onclick = () => {
-      document.querySelector('.sidebar-wrapper ul .serv-show').classList.toggle("show1");
- };
+document.querySelector('.serv-btn').onclick = () => {
+    document.querySelector('.sidebar-wrapper ul .serv-show').classList.toggle("show1");
+};
 
- const menus = document.querySelectorAll('.sidebar-wrapper ul li');
- menus.forEach(menu => {
-     menu.addEventListener('click', () => {
-         menus.forEach(menu => {
-             menu.classList.remove('side-active');
-         });
-         menu.classList.add('side-active');
-     });
- });
+const menus = document.querySelectorAll('.sidebar-wrapper ul li');
+menus.forEach(menu => {
+    menu.addEventListener('click', () => {
+        menus.forEach(menu => {
+            menu.classList.remove('side-active');
+        });
+        menu.classList.add('side-active');
+    });
+});
